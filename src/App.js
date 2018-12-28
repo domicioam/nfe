@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSearch, faEnvelope, faTrash, faRedo } from '@fortawesome/free-solid-svg-icons'
+
+import { Header } from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import NotasFiscais from './components/NotasFiscais/NotasFiscais';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    library.add([faSearch, faEnvelope, faTrash, faRedo]);
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header />
+        <main className="container">
+          <NotasFiscais />
+        </main>
+        <Footer />
       </div>
     );
   }
