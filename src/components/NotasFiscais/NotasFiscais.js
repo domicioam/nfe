@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './NotasFiscais.css';
+import NotaFiscalModal from './NotaFiscalModal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -9,7 +10,8 @@ export default class NotasFiscais extends Component {
       <section className="NotasFiscais">
         <header className="row">
           <div className="col-lg-12">
-            <button className="btn btn-success float-right">+ Nota</button>
+            <button className="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">Nova NF-e</button>
+            <button className="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">Nova NFC-e</button>
           </div>
         </header>
         <table className="table table-striped">
@@ -122,6 +124,7 @@ export default class NotasFiscais extends Component {
             </tr>
           </tbody>
         </table>
+        <NotaFiscalModal />
       </section>
     );
   }
