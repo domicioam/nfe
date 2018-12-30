@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './NotaFiscalForm.css';
-import NotaFiscalForm from './NotaFiscalForm';
+import './NotaFiscalModal.css';
+import NotaFiscalForm from '../NotaFiscalForm/NotaFiscalForm';
 
 export default class NotaFiscalModal extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './NotasFiscais.css';
-import NotaFiscalModal from './NotaFiscalModal';
+import NotaFiscalModal from './NotaFiscalModal/NotaFiscalModal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
