@@ -1,10 +1,45 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import './NotasFiscais.css';
 import NotaFiscalModal from './NotaFiscalModal/NotaFiscalModal';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 export default class NotasFiscais extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { notas: [] };
+  }
+
+  async componentDidMount() {
+    const res = await axios.get('/api/notasfiscais');
+    this.setState({ notas: res.data });
+  }
+
+  renderContent() {
+    const notas = this.state.notas.map((nota) =>
+      <tr key={nota.id}>
+        <td>{nota.modelo}</td>
+        <td>{nota.número}</td>
+        <td>{nota.dataHoraEmissão}</td>
+        <td>{nota.dataHoraAutorização}</td>
+        <td>{nota.destinatário}</td>
+        <td>{nota.UF}</td>
+        <td>{nota.valor}</td>
+        <td>{nota.status}</td>
+        <td>
+          <FontAwesomeIcon icon="search" />
+          <FontAwesomeIcon icon="envelope" />
+          <FontAwesomeIcon icon="trash" />
+          <FontAwesomeIcon icon="redo" />
+        </td>
+      </tr>
+    );
+
+    return notas;
+  }
+
   render() {
     return (
       <section className="NotasFiscais">
@@ -29,99 +64,7 @@ export default class NotasFiscais extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>NFC-e</td>
-              <td>18500</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>Domício Medeiros</td>
-              <td>UF</td>
-              <td>R$ 80,00</td>
-              <td>Enviada</td>
-              <td>
-                <FontAwesomeIcon icon="search" />
-                <FontAwesomeIcon icon="envelope" />
-                <FontAwesomeIcon icon="trash" />
-                <FontAwesomeIcon icon="redo" />
-              </td>
-            </tr>
-            <tr>
-              <td>NFC-e</td>
-              <td>18500</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>Domício Medeiros</td>
-              <td>UF</td>
-              <td>R$ 80,00</td>
-              <td>Enviada</td>
-              <td>
-                <FontAwesomeIcon icon="search" />
-                <FontAwesomeIcon icon="envelope" />
-                <FontAwesomeIcon icon="trash" />
-                <FontAwesomeIcon icon="redo" />
-              </td>
-            </tr>
-            <tr>
-              <td>NFC-e</td>
-              <td>18500</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>Domício Medeiros</td>
-              <td>UF</td>
-              <td>R$ 80,00</td>
-              <td>Enviada</td>
-              <td>
-                <FontAwesomeIcon icon="search" />
-                <FontAwesomeIcon icon="envelope" />
-                <FontAwesomeIcon icon="trash" />
-                <FontAwesomeIcon icon="redo" />
-              </td>
-            </tr><tr>
-              <td>NFC-e</td>
-              <td>18500</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>Domício Medeiros</td>
-              <td>UF</td>
-              <td>R$ 80,00</td>
-              <td>Enviada</td>
-              <td>
-                <FontAwesomeIcon icon="search" />
-                <FontAwesomeIcon icon="envelope" />
-                <FontAwesomeIcon icon="trash" />
-                <FontAwesomeIcon icon="redo" />
-              </td>
-            </tr><tr>
-              <td>NFC-e</td>
-              <td>18500</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>Domício Medeiros</td>
-              <td>UF</td>
-              <td>R$ 80,00</td>
-              <td>Enviada</td>
-              <td>
-                <FontAwesomeIcon icon="search" />
-                <FontAwesomeIcon icon="envelope" />
-                <FontAwesomeIcon icon="trash" />
-                <FontAwesomeIcon icon="redo" />
-              </td>
-            </tr><tr>
-              <td>NFC-e</td>
-              <td>18500</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>23/12/2018 20:15:16</td>
-              <td>Domício Medeiros</td>
-              <td>UF</td>
-              <td>R$ 80,00</td>
-              <td>Enviada</td>
-              <td>
-                <FontAwesomeIcon icon="search" />
-                <FontAwesomeIcon icon="envelope" />
-                <FontAwesomeIcon icon="trash" />
-                <FontAwesomeIcon icon="redo" />
-              </td>
-            </tr>
+            {this.renderContent()}
           </tbody>
         </table>
         <NotaFiscalModal />

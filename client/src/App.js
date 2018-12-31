@@ -25,7 +25,6 @@ class App extends Component {
           <main className="container">
             <Route exact path="/" component={NotasFiscais} />
             <Route path="/destinatários" component={Destinatários} />
-            <a href="/api">Check API route</a>
           </main>
           <Footer />
         </div>
