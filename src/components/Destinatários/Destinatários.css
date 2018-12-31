@@ -1,0 +1,11 @@
+.Destinatários td > svg {
+  margin: 5px;
+}
+
+.Destinatários > Header > div {
+  margin: 10px 0;
+}
+
+.Destinatários header > div > button {
+  margin-left: 5px;
+}
