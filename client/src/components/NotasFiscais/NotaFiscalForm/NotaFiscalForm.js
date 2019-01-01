@@ -3,10 +3,109 @@ import './NotaFiscalForm.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+const formValid = ({ formErrors }) => {
+  let valid = true;
+
+  Object.values(formErrors).forEach(val => {
+    val.length > 0 && (valid = false);
+  });
+
+  return valid;
+};
+
 export default class NotaFiscalForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cabeçalho: {
+        destinatário: null,
+        cpfCnpj: null,
+        indicadorPresença: null,
+        dataHoraEmissão: null,
+        finalidade: null,
+        dataHoraSaída: null,
+        naturezaOperação: null,
+        tipoImpressão: null
+      },
+      produto: {
+        quantidade: null,
+        produto: null,
+        valorUnitário: null,
+        totalBruto: null,
+        descontos: null,
+        frete: null,
+        outros: null,
+        seguro: null,
+        totalLíquido: null
+      },
+      produtos: [],
+      pagamento: {
+        qtdeParcelas: null,
+        valorParcela: null,
+        formaPagamento: null
+      },
+      pagamentos: [],
+      formErrors: {
+        cabeçalho: {
+          destinatário: "",
+          cpfCnpj: "",
+          indicadorPresença: "",
+          dataHoraEmissão: "",
+          finalidade: "",
+          dataHoraSaída: "",
+          naturezaOperação: "",
+          tipoImpressão: ""
+        },
+        produto: {
+          quantidade: "",
+          produto: "",
+          valorUnitário: "",
+          totalBruto: "",
+          descontos: "",
+          frete: "",
+          outros: "",
+          seguro: "",
+          totalLíquido: ""
+        },
+        produtos: "",
+        pagamento: {
+          qtdeParcelas: "",
+          valorParcela: "",
+          formaPagamento: ""
+        },
+        pagamentos: ""
+      }
+    };
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    if(formValid(this.state)) {
+      console.log("Formulário válido");
+    }
+    else {
+      console.log("Formulário inválido");
+    }
+  }
+
+  handleChange = e => {
+    e.preventDefault();
+
+    const { name, value} = e.target;
+    let formErrors = { ...this.state.formErrors };
+
+    switch(name) {
+      //case "field name"
+
+      //criar componente para produtos e pagamentos
+    }
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit} noValidate>
         <h6>Cabeçalho da Nota:</h6>
         <div id="identificação" className="row">
           <fieldset className="col-lg-auto">
