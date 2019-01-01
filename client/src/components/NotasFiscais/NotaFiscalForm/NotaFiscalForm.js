@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './NotaFiscalForm.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ProdutoForm from './ProdutoForm/ProdutoForm';
 
 const formValid = ({ formErrors }) => {
   let valid = true;
@@ -28,17 +29,6 @@ export default class NotaFiscalForm extends Component {
         naturezaOperação: null,
         tipoImpressão: null
       },
-      produto: {
-        quantidade: null,
-        produto: null,
-        valorUnitário: null,
-        totalBruto: null,
-        descontos: null,
-        frete: null,
-        outros: null,
-        seguro: null,
-        totalLíquido: null
-      },
       produtos: [],
       pagamento: {
         qtdeParcelas: null,
@@ -56,17 +46,6 @@ export default class NotaFiscalForm extends Component {
           dataHoraSaída: "",
           naturezaOperação: "",
           tipoImpressão: ""
-        },
-        produto: {
-          quantidade: "",
-          produto: "",
-          valorUnitário: "",
-          totalBruto: "",
-          descontos: "",
-          frete: "",
-          outros: "",
-          seguro: "",
-          totalLíquido: ""
         },
         produtos: "",
         pagamento: {
@@ -158,51 +137,7 @@ export default class NotaFiscalForm extends Component {
         </div>
         <hr />
         <h6>Produtos e Serviços</h6>
-        <div className="row">
-          <fieldset className="form-group col-lg-2">
-            <label>Quantidade:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-4">
-            <label>Produto:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-3">
-            <label>Valor Unitário:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-3">
-            <label>Total Bruto:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-        </div>
-        <div className="row">
-          <fieldset className="form-group col-lg-2">
-            <label>Descontos:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-2">
-            <label>Frete:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-2">
-            <label>Outros:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-3">
-            <label>Seguro:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-3">
-            <label>Total Líquido:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-        </div>
-        <div className="row">
-          <div className="col-lg-12">
-            <button className="btn btn-success btn-sm float-right">Gravar Produto</button>
-          </div>
-        </div>
+        <ProdutoForm formValid={formValid} produtos={this.state.produtos} />
         <table id="tbProdutos" className="table table-striped">
           <thead>
             <tr>
