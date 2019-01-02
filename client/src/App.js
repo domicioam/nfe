@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch, faEnvelope, faTrash, faRedo, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faEnvelope, faTrash, faRedo, faEdit, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
 import { Header } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -14,7 +14,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    library.add([faSearch, faEnvelope, faTrash, faRedo, faEdit]);
+    library.add([faSearch, faEnvelope, faTrash, faRedo, faEdit, faCalendarAlt]);
   }
 
   render() {

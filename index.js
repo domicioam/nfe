@@ -70,12 +70,23 @@ var notas = [
   }
 ]
 
+var destinatários = [
+  {
+    id: 0,
+    nome: "Domício Medeiros"
+  }
+];
+
 app.get('/', (req, res) => {
   res.send({ hi: 'there' });
 });
 
 app.get('/api/notasfiscais', (req, res) => {
   res.send(notas);
+});
+
+app.get('/api/destinatarios', (req, res) => {
+  res.send(destinatários);
 });
 
 app.listen(5000);

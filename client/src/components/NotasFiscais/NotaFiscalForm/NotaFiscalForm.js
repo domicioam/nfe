@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './NotaFiscalForm.css';
-
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import './NotaFiscalForm.css';
 import ProdutoForm from './ProdutoForm/ProdutoForm';
 import PagamentoForm from './PagamentoForm/PagamentoForm';
 
@@ -15,6 +16,8 @@ const formValid = ({ formErrors }) => {
   return valid;
 };
 
+let destinatários = [];
+
 export default class NotaFiscalForm extends Component {
   constructor(props) {
     super(props);
@@ -24,11 +27,9 @@ export default class NotaFiscalForm extends Component {
         destinatário: null,
         cpfCnpj: null,
         indicadorPresença: null,
-        dataHoraEmissão: null,
         finalidade: null,
         dataHoraSaída: null,
-        naturezaOperação: null,
-        tipoImpressão: null
+        naturezaOperação: null
       },
       produtos: [],
       pagamentos: [],
@@ -37,11 +38,9 @@ export default class NotaFiscalForm extends Component {
           destinatário: "",
           cpfCnpj: "",
           indicadorPresença: "",
-          dataHoraEmissão: "",
           finalidade: "",
           dataHoraSaída: "",
-          naturezaOperação: "",
-          tipoImpressão: ""
+          naturezaOperação: ""
         },
         produtos: "",
         pagamentos: ""
@@ -49,10 +48,15 @@ export default class NotaFiscalForm extends Component {
     };
   }
 
+  async componentDidMount() {
+    const res = await axios.get('/api/destinatarios');
+    destinatários = res.data;
+  }
+
   handleSubmit = e => {
     e.preventDefault();
 
-    if(formValid(this.state)) {
+    if (formValid(this.state)) {
       console.log("Formulário válido");
     }
     else {
@@ -63,10 +67,10 @@ export default class NotaFiscalForm extends Component {
   handleChange = e => {
     e.preventDefault();
 
-    const { name, value} = e.target;
+    const { name, value } = e.target;
     let formErrors = { ...this.state.formErrors };
 
-    switch(name) {
+    switch (name) {
       //case "field name"
 
       //criar componente para produtos e pagamentos
@@ -91,7 +95,14 @@ export default class NotaFiscalForm extends Component {
         <div className="row">
           <fieldset className="form-group col-lg-4">
             <label>Destinatário:</label>
-            <input type="text" className="form-control form-control-sm" />
+            <select className="form-control form-control-sm">
+              <option></option>
+              {
+                destinatários.map(dest => {
+                  return (<option key={dest.id} value={dest.id}>{dest.nome}</option>)
+                })
+              }
+            </select>
           </fieldset>
           <fieldset className="form-group col-lg-4">
             <label>CPF / CNPJ:</label>
@@ -99,30 +110,39 @@ export default class NotaFiscalForm extends Component {
           </fieldset>
           <fieldset className="form-group col-lg-4">
             <label>Indicador Presença:</label>
-            <input type="text" className="form-control form-control-sm" />
+            <select className="form-control form-control-sm">
+              <option value="presencial">Presencial</option>
+              <option value="não_aplica">Não se aplica</option>
+              <option value="internet">Não presencial, internet</option>
+              <option value="teleatendimento">Não presencial, teleatendimento</option>
+              <option value="domicílio">Entrega a domicílio</option>
+              <option value="outros">Não presencial, outros</option>
+            </select>
           </fieldset>
         </div>
         <div className="row">
           <fieldset className="form-group col-lg-4">
-            <label>Data / Hora Emissão:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-4">
             <label>Finalidade:</label>
-            <input type="text" className="form-control form-control-sm" />
+            <select className="form-control form-control-sm">
+              <option value="normal">Normal</option>
+              <option value="complementar">Complementar</option>
+              <option value="ajuste">Ajuste</option>
+              <option value="devolução">Devolução</option>
+            </select>
           </fieldset>
           <fieldset className="form-group col-lg-4">
             <label>Data / Hora Saída:</label>
-            <input type="text" className="form-control form-control-sm" />
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <div className="input-group-text">
+                  <FontAwesomeIcon icon="calendar-alt" />
+                </div>
+              </div>
+              <input type="text" className="form-control form-control-sm" />
+            </div>
           </fieldset>
-        </div>
-        <div className="row">
           <fieldset className="form-group col-lg-4">
             <label>Natureza da Operação:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-4">
-            <label>Tipo de Impressão:</label>
             <input type="text" className="form-control form-control-sm" />
           </fieldset>
         </div>
