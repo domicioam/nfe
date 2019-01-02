@@ -3,6 +3,7 @@ import './NotaFiscalForm.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProdutoForm from './ProdutoForm/ProdutoForm';
+import PagamentoForm from './PagamentoForm/PagamentoForm';
 
 const formValid = ({ formErrors }) => {
   let valid = true;
@@ -30,11 +31,6 @@ export default class NotaFiscalForm extends Component {
         tipoImpressão: null
       },
       produtos: [],
-      pagamento: {
-        qtdeParcelas: null,
-        valorParcela: null,
-        formaPagamento: null
-      },
       pagamentos: [],
       formErrors: {
         cabeçalho: {
@@ -48,11 +44,6 @@ export default class NotaFiscalForm extends Component {
           tipoImpressão: ""
         },
         produtos: "",
-        pagamento: {
-          qtdeParcelas: "",
-          valorParcela: "",
-          formaPagamento: ""
-        },
         pagamentos: ""
       }
     };
@@ -170,23 +161,7 @@ export default class NotaFiscalForm extends Component {
         </table>
         <hr />
         <h6>Formas de Pagamentos</h6>
-        <div className="row">
-          <fieldset className="form-group col-lg-2">
-            <label>Parcelas:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-2">
-            <label>Valor Parcela:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-2">
-            <label>Forma:</label>
-            <input type="text" className="form-control form-control-sm" />
-          </fieldset>
-          <fieldset className="form-group col-lg-auto">
-            <button id="btnGravarPagamento" className="btn btn-success btn-sm float-right">Gravar Pagamento</button>
-          </fieldset>
-        </div>
+        <PagamentoForm formValid={formValid} pagamentos={this.state.pagamentos} />
         <table className="table table-striped">
           <thead>
             <tr>

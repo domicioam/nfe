@@ -32,9 +32,9 @@ class ProdutoForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.formValid(this.state);
-
-    //this.props.produtos.push()
+    if(this.props.formValid(this.state)) {
+      //this.props.produtos.push()
+    }
 
     console.log("Aqui");
   }
