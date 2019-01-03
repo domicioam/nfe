@@ -100,6 +100,8 @@ app.get('/api/produtos', (req, res) => {
   res.send(produtos);
 });
 
-app.listen(5000);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT);
 
 
