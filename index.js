@@ -77,6 +77,13 @@ var destinatários = [
   }
 ];
 
+var produtos = [
+  {
+    id: 0,
+    descrição: "Botijão de Gás P13"
+  }
+];
+
 app.get('/', (req, res) => {
   res.send({ hi: 'there' });
 });
@@ -87,6 +94,10 @@ app.get('/api/notasfiscais', (req, res) => {
 
 app.get('/api/destinatarios', (req, res) => {
   res.send(destinatários);
+});
+
+app.get('/api/produtos', (req, res) => {
+  res.send(produtos);
 });
 
 app.listen(5000);

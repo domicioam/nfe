@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import axios from 'axios';
+
+let produtos = [];
 
 class ProdutoForm extends Component {
   constructor(props) {
@@ -29,8 +32,9 @@ class ProdutoForm extends Component {
     };
   }
 
-  componentDidMount() {
-    
+  async componentDidMount() {
+    const res = await axios.get('/api/produtos');
+    produtos = res.data;
   }
 
   handleSubmit = e => {
@@ -72,37 +76,79 @@ class ProdutoForm extends Component {
           </fieldset>
           <fieldset className="form-group col-lg-4">
             <label>Produto:</label>
-            <input type="text" className="form-control form-control-sm" />
+            <select className="form-control form-control-sm">
+              <option></option>
+              {
+                produtos.map(produto => {
+                  return (<option key={produto.id} value={produto.id}>{produto.descrição}</option>)
+                })
+              }
+            </select>
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Valor Unitário:</label>
+            <div className="input-group input-group-sm">
+              <div className="input-group-prepend">
+                <span className="input-group-text">R$</span>
+              </div>
             <input type="text" className="form-control form-control-sm" />
+            </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Total Bruto:</label>
+            <div className="input-group input-group-sm">
+              <div className="input-group-prepend">
+                <span className="input-group-text">R$</span>
+              </div>
             <input type="text" className="form-control form-control-sm" />
+            </div>
           </fieldset>
         </div>
         <div className="row">
           <fieldset className="form-group col-lg-2">
             <label>Descontos:</label>
+            <div className="input-group input-group-sm">
+              <div className="input-group-prepend">
+                <span className="input-group-text">R$</span>
+              </div>
             <input type="text" className="form-control form-control-sm" />
+            </div>
           </fieldset>
           <fieldset className="form-group col-lg-2">
             <label>Frete:</label>
+            <div className="input-group input-group-sm">
+              <div className="input-group-prepend">
+                <span className="input-group-text">R$</span>
+              </div>
             <input type="text" className="form-control form-control-sm" />
+            </div>
           </fieldset>
           <fieldset className="form-group col-lg-2">
             <label>Outros:</label>
+            <div className="input-group input-group-sm">
+              <div className="input-group-prepend">
+                <span className="input-group-text">R$</span>
+              </div>
             <input type="text" className="form-control form-control-sm" />
+            </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Seguro:</label>
+            <div className="input-group input-group-sm">
+              <div className="input-group-prepend">
+                <span className="input-group-text">R$</span>
+              </div>
             <input type="text" className="form-control form-control-sm" />
+            </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Total Líquido:</label>
+            <div className="input-group input-group-sm">
+              <div className="input-group-prepend">
+                <span className="input-group-text">R$</span>
+              </div>
             <input type="text" className="form-control form-control-sm" />
+            </div>
           </fieldset>
         </div>
         <div className="row">
