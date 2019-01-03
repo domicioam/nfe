@@ -29,6 +29,10 @@ class ProdutoForm extends Component {
     };
   }
 
+  componentDidMount() {
+    
+  }
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -61,7 +65,7 @@ class ProdutoForm extends Component {
         <div className="row">
           <fieldset className="form-group col-lg-2">
             <label>Quantidade:</label>
-            <input name="quantidade" type="text" className="form-control form-control-sm" value={this.state.quantidade} onChange={this.handleChange} />
+            <input name="quantidade" type="number" className="form-control form-control-sm" value={this.state.quantidade} onChange={this.handleChange} />
             {formErrors.quantidade.length > 0 && (
               <small className="text-danger">{formErrors.quantidade}</small>
             )}

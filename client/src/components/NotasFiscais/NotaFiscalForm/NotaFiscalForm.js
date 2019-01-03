@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Datetime from 'react-datetime';
 
 import './NotaFiscalForm.css';
+import './react-datetime.css';
 import ProdutoForm from './ProdutoForm/ProdutoForm';
 import PagamentoForm from './PagamentoForm/PagamentoForm';
 
@@ -138,7 +140,7 @@ export default class NotaFiscalForm extends Component {
                   <FontAwesomeIcon icon="calendar-alt" />
                 </div>
               </div>
-              <input type="text" className="form-control form-control-sm" />
+              <Datetime inputProps={{ className: "form-control form-control-sm input-group-input" }} />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-4">

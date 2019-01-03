@@ -14,3 +14,8 @@ h6 {
 #identificação {
   margin-bottom: 10px;
 }
+
+.NotasFiscais .input-group-input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
