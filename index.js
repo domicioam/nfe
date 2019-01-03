@@ -84,9 +84,9 @@ var produtos = [
   }
 ];
 
-app.get('/', (req, res) => {
-  res.send({ hi: 'there' });
-});
+// app.get('/', (req, res) => {
+//   res.send({ hi: 'there' });
+// });
 
 app.get('/api/notasfiscais', (req, res) => {
   res.send(notas);
