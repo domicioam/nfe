@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './NotasFiscais.css';
-import NotaFiscalModal from './NotaFiscalModal/NotaFiscalModal';
+import NotaFiscalModal from '../NotaFiscalModal/NotaFiscalModal';
 
 export default class NotasFiscais extends Component {
   constructor(props) {

@@ -40,11 +40,38 @@ class ProdutoForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    if(this.props.formValid(this.state)) {
+    let formErrors = this.validateAll();
+    this.setState({ formErrors });
+
+    if (this.props.formValid(this.state)) {
       //this.props.produtos.push()
+    } else {
+
+    }
+  }
+
+  validateAll = () => {
+    let formErrors = { ...this.state.formErrors };
+
+    for (let prop in this.state) {
+      let value = this.state[prop];
+      formErrors[prop] = this.validateProperty(prop, value);
     }
 
-    console.log("Aqui");
+    return formErrors;
+  }
+
+  validateProperty = (name, value) => {
+    let errorMessage = "";
+
+    switch (name) {
+      case "quantidade":
+        errorMessage = value.length <= 0 ? "Campo obrigatório" : "";
+        errorMessage = errorMessage ? errorMessage : value < 1 ? "Valor inválido" : "";
+        break;
+    }
+
+    return errorMessage;
   }
 
   handleChange = e => {
@@ -52,13 +79,8 @@ class ProdutoForm extends Component {
     const { name, value } = e.target;
     let formErrors = { ...this.state.formErrors };
 
-    switch (name) {
-      case "quantidade":
-        formErrors.quantidade = value.length <= 0 || value < 1 ? "Campo obrigatório" : "";
-        break;
-    }
-
-    this.setState({ formErrors, [name]: value }, () => console.log("handle change"));
+    formErrors[name] = this.validateProperty(name, value);
+    this.setState({ formErrors, [name]: value });
   }
 
   render() {
@@ -91,7 +113,7 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-            <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control form-control-sm" />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
@@ -100,7 +122,7 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-            <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control form-control-sm" />
             </div>
           </fieldset>
         </div>
@@ -111,7 +133,7 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-            <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control form-control-sm" />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-2">
@@ -120,7 +142,7 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-            <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control form-control-sm" />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-2">
@@ -129,7 +151,7 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-            <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control form-control-sm" />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
@@ -138,7 +160,7 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-            <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control form-control-sm" />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
@@ -147,7 +169,7 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-            <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control form-control-sm" />
             </div>
           </fieldset>
         </div>

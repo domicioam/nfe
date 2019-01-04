@@ -5,8 +5,8 @@ import Datetime from 'react-datetime';
 
 import './NotaFiscalForm.css';
 import './react-datetime.css';
-import ProdutoForm from './ProdutoForm/ProdutoForm';
-import PagamentoForm from './PagamentoForm/PagamentoForm';
+import ProdutoForm from '../ProdutoForm/ProdutoForm';
+import PagamentoForm from '../PagamentoForm/PagamentoForm';
 
 const formValid = ({ formErrors }) => {
   let valid = true;
