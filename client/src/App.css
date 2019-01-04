@@ -1,1 +1,6 @@
 
+@media (max-width: 1024px) {
+  .App {
+    position: relative;
+  }
+}
