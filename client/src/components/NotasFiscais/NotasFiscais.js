@@ -49,24 +49,26 @@ export default class NotasFiscais extends Component {
             <button className="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">Nova NFC-e</button>
           </div>
         </header>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Modelo</th>
-              <th>Número</th>
-              <th>Data / Hora Emissão</th>
-              <th>Data / Hora Autorização</th>
-              <th>Destinatário</th>
-              <th>UF</th>
-              <th>Valor</th>
-              <th>Status</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderContent()}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Modelo</th>
+                <th>Número</th>
+                <th>Data / Hora Emissão</th>
+                <th>Data / Hora Autorização</th>
+                <th>Destinatário</th>
+                <th>UF</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderContent()}
+            </tbody>
+          </table>
+        </div>
         <NotaFiscalModal />
       </section>
     );

@@ -151,59 +151,63 @@ export default class NotaFiscalForm extends Component {
         <hr />
         <h6>Produtos e Serviços</h6>
         <ProdutoForm formValid={formValid} produtos={this.state.produtos} />
-        <table id="tbProdutos" className="table table-striped">
-          <thead>
-            <tr>
-              <th>Qtde.</th>
-              <th>Descrição</th>
-              <th>Valor</th>
-              <th>Frete</th>
-              <th>Seguro</th>
-              <th>Outros</th>
-              <th>Desconto</th>
-              <th>Total</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>01</td>
-              <td>Gás P13</td>
-              <td>65,00</td>
-              <td>0,00</td>
-              <td>0,00</td>
-              <td>0,00</td>
-              <td>0,00</td>
-              <td>65,00</td>
-              <td>
-                <FontAwesomeIcon icon="trash" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table id="tbProdutos" className="table table-striped">
+            <thead>
+              <tr>
+                <th>Qtde.</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Frete</th>
+                <th>Seguro</th>
+                <th>Outros</th>
+                <th>Desconto</th>
+                <th>Total</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>Gás P13</td>
+                <td>65,00</td>
+                <td>0,00</td>
+                <td>0,00</td>
+                <td>0,00</td>
+                <td>0,00</td>
+                <td>65,00</td>
+                <td>
+                  <FontAwesomeIcon icon="trash" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <hr />
         <h6>Formas de Pagamentos</h6>
         <PagamentoForm formValid={formValid} pagamentos={this.state.pagamentos} />
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Parcelas</th>
-              <th>Valor Parcela</th>
-              <th>Forma</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>01</td>
-              <td>65,00</td>
-              <td>Dinheiro</td>
-              <td>
-                <FontAwesomeIcon icon="trash" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Parcelas</th>
+                <th>Valor Parcela</th>
+                <th>Forma</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>65,00</td>
+                <td>Dinheiro</td>
+                <td>
+                  <FontAwesomeIcon icon="trash" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </form>
     );
   }
