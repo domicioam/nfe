@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import axios from 'axios';
+import CurrencyInput from 'react-currency-input';
 
 let produtos = [];
 
@@ -119,7 +120,9 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-              <input type="text" className="form-control form-control-sm" />
+              <CurrencyInput name="valorUnitário" value={this.state.valorUnitário}
+                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
@@ -128,7 +131,9 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-              <input type="text" className="form-control form-control-sm" />
+              <CurrencyInput name="totalBruto" value={this.state.totalBruto}
+                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
         </div>
@@ -139,7 +144,9 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-              <input type="text" className="form-control form-control-sm" />
+              <CurrencyInput name="descontos" value={this.state.descontos}
+                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-2">
@@ -148,7 +155,9 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-              <input type="text" className="form-control form-control-sm" />
+              <CurrencyInput name="frete" value={this.state.frete}
+                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-2">
@@ -157,7 +166,9 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-              <input type="text" className="form-control form-control-sm" />
+              <CurrencyInput name="outros" value={this.state.outros}
+                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
@@ -166,7 +177,9 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-              <input type="text" className="form-control form-control-sm" />
+              <CurrencyInput name="seguro" value={this.state.seguro}
+                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
@@ -175,7 +188,9 @@ class ProdutoForm extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
-              <input type="text" className="form-control form-control-sm" />
+              <CurrencyInput name="totalLíquido" value={this.state.totalLíquido}
+                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
         </div>
