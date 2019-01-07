@@ -109,6 +109,9 @@ class ProdutoForm extends Component {
                 })
               }
             </select>
+            {formErrors.produto.length > 0 && (
+              <small className="text-danger">{formErrors.produto}</small>
+            )}
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Valor Unitário:</label>
