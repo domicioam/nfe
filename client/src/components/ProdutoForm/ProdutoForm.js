@@ -69,6 +69,9 @@ class ProdutoForm extends Component {
         errorMessage = value.length <= 0 ? "Campo obrigatório" : "";
         errorMessage = errorMessage ? errorMessage : value < 1 ? "Valor inválido" : "";
         break;
+      case "produto":
+        errorMessage = value ? "" : "Campo obrigatório";
+        break;
     }
 
     return errorMessage;
@@ -98,7 +101,7 @@ class ProdutoForm extends Component {
           </fieldset>
           <fieldset className="form-group col-lg-4">
             <label>Produto:</label>
-            <select className="form-control form-control-sm">
+            <select className="form-control form-control-sm" name="produto" value={this.state.produto} onChange={this.handleChange}>
               <option></option>
               {
                 produtos.map(produto => {
