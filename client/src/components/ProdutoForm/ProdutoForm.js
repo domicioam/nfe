@@ -12,13 +12,13 @@ class ProdutoForm extends Component {
     this.state = {
       quantidade: "",
       produto: null,
-      valorUnitário: null,
-      totalBruto: null,
-      descontos: null,
-      frete: null,
-      outros: null,
-      seguro: null,
-      totalLíquido: null,
+      valorUnitário: "0,00",
+      totalBruto: "0,00",
+      descontos: "0,00",
+      frete: "0,00",
+      outros: "0,00",
+      seguro: "0,00",
+      totalLíquido: "0,00",
       formErrors: {
         quantidade: "",
         produto: "",
@@ -85,6 +85,20 @@ class ProdutoForm extends Component {
 
     formErrors[name] = this.validateProperty(name, value);
     this.setState({ formErrors, [name]: value });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.quantidade !== this.state.quantidade || prevState.valorUnitário !== this.state.valorUnitário) {
+      let totalBruto = this.calcularTotalBruto(this.state.quantidade, this.state.valorUnitário);
+      this.setState({ totalBruto });
+    }
+  }
+
+  calcularTotalBruto = (quantidade ,valorUnitário) => {
+    valorUnitário = valorUnitário.replace(".", "").replace(",", ".");
+    valorUnitário = parseFloat(valorUnitário);
+
+    return parseInt(quantidade) * valorUnitário;
   }
 
   render() {
