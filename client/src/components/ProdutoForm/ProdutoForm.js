@@ -88,17 +88,49 @@ class ProdutoForm extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.quantidade !== this.state.quantidade || prevState.valorUnitário !== this.state.valorUnitário) {
+    if (
+      prevState.quantidade !== this.state.quantidade
+      || prevState.valorUnitário !== this.state.valorUnitário
+    ) {
       let totalBruto = this.calcularTotalBruto(this.state.quantidade, this.state.valorUnitário);
       this.setState({ totalBruto });
+    } else if (
+      prevState.totalBruto !== this.state.totalBruto
+      || prevState.descontos !== this.state.descontos
+      || prevState.frete !== this.state.frete
+      || prevState.seguro !== this.state.seguro
+      || prevState.outros !== this.state.outros
+    ) {
+      let totalLíquido = this.calcularTotalLíquido(this.state);
+      this.setState({ totalLíquido });
     }
   }
 
-  calcularTotalBruto = (quantidade ,valorUnitário) => {
+  calcularTotalBruto = (quantidade, valorUnitário) => {
     valorUnitário = valorUnitário.replace(".", "").replace(",", ".");
     valorUnitário = parseFloat(valorUnitário);
 
-    return parseInt(quantidade) * valorUnitário;
+    let totalBruto = parseInt(quantidade) * valorUnitário;
+    return totalBruto.toLocaleString("pt-BR");
+  }
+
+  calcularTotalLíquido = ({ totalBruto, descontos, frete, seguro, outros }) => {
+    totalBruto = totalBruto.replace(".", "").replace(",", ".");
+    totalBruto = parseFloat(totalBruto);
+
+    descontos = descontos.replace(".", "").replace(",", ".");
+    descontos = parseFloat(descontos);
+
+    frete = frete.replace(".", "").replace(",", ".");
+    frete = parseFloat(frete);
+
+    seguro = seguro.replace(".", "").replace(",", ".");
+    seguro = parseFloat(seguro);
+
+    outros = outros.replace(".", "").replace(",", ".");
+    outros = parseFloat(outros);
+
+    return totalBruto - descontos + frete + seguro + outros;
   }
 
   render() {
