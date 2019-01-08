@@ -43,13 +43,26 @@ class ProdutoForm extends Component {
     e.preventDefault();
 
     let formErrors = this.validateAll();
-    this.setState({ formErrors });
-
-    if (this.props.formValid(this.state)) {
-      //this.props.produtos.push()
-    } else {
-
-    }
+    this.setState({ formErrors }, 
+      () => {
+        if (this.props.formValid(this.state)) {
+          let novoProduto = {
+            id: this.state.produtoId,
+            quantidade: this.state.quantidade,
+            descrição: produtos.filter(produto => produto.id === this.state.produtoId)[0].descrição,
+            valorUnitário: this.state.valorUnitário,
+            frete: this.state.frete,
+            seguro: this.state.seguro,
+            outros: this.state.outros,
+            desconto: this.state.descontos,
+            total: this.state.totalLíquido
+          };
+    
+          this.props.produtos.push(novoProduto);
+        } else {
+    
+        }
+      });
   }
 
   validateAll = () => {
@@ -73,6 +86,8 @@ class ProdutoForm extends Component {
         break;
       case "produto":
         errorMessage = value ? "" : "Campo obrigatório";
+        let filteredProdutos = this.props.produtos.filter(produto => produto.id === this.state.produto);
+        errorMessage = filteredProdutos.length !== 0 ? "Produto duplicado" : errorMessage;
         break;
     }
 
@@ -259,7 +274,8 @@ class ProdutoForm extends Component {
 }
 
 ProdutoForm.propTypes = {
-  formValid: PropTypes.func.isRequired
+  formValid: PropTypes.func.isRequired,
+  produtos: PropTypes.array.isRequired
 }
 
 export default ProdutoForm;

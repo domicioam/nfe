@@ -10,7 +10,7 @@ import PagamentoForm from '../PagamentoForm/PagamentoForm';
 
 const formValid = ({ formErrors }) => {
   let valid = true;
-
+debugger;
   Object.values(formErrors).forEach(val => {
     val.length > 0 && (valid = false);
   });
