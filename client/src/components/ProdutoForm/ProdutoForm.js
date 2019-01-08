@@ -49,7 +49,7 @@ class ProdutoForm extends Component {
           let produtoFiltered = produtos.filter(produto => produto.id == this.state.produto);
 
           let novoProduto = {
-            id: this.state.produtoId,
+            id: this.state.produto,
             quantidade: this.state.quantidade,
             descrição: produtoFiltered[0].descrição,
             valorUnitário: this.state.valorUnitário,
@@ -57,7 +57,7 @@ class ProdutoForm extends Component {
             seguro: this.state.seguro,
             outros: this.state.outros,
             desconto: this.state.descontos,
-            total: this.state.totalLíquido
+            total: this.state.totalLíquido.toLocaleString("pt-BR", { minimumFractionDigits: 2})
           };
 
           this.props.addProduto(novoProduto);
@@ -90,6 +90,7 @@ class ProdutoForm extends Component {
         errorMessage = value ? "" : "Campo obrigatório";
         let filteredProdutos = this.props.produtos.filter(produto => produto.id === this.state.produto);
         errorMessage = filteredProdutos.length !== 0 ? "Produto duplicado" : errorMessage;
+        
         break;
     }
 
@@ -108,8 +109,11 @@ class ProdutoForm extends Component {
           case "quantidade":
           case "valorUnitário":
             var totalBruto = this.calcularTotalBruto(this.state.quantidade, this.state.valorUnitário);
-            
-            this.setState({ totalBruto });
+            this.setState({ totalBruto },
+              () => {
+                var totalLíquido = this.calcularTotalLíquido(this.state);
+                this.setState({ totalLíquido });
+              });
             break;
           case "totalBruto":
           case "descontos":
