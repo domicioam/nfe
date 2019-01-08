@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import axios from 'axios';
 import CurrencyInput from 'react-currency-input';
+import { debug } from 'util';
 
 let produtos = [];
 
@@ -103,11 +104,18 @@ class ProdutoForm extends Component {
     ) {
       let totalLíquido = this.calcularTotalLíquido(this.state);
       this.setState({ totalLíquido });
+    } else if (
+      prevState.produto !== this.state.produto
+    ) {
+      let id = parseInt(this.state.produto);
+      let produto = produtos.filter(produto => produto.id === id);
+      let valorUnitário = produto[0] ? produto[0].valorUnitário : "0";
+      this.setState({ valorUnitário });
     }
   }
 
   calcularTotalBruto = (quantidade, valorUnitário) => {
-    valorUnitário = valorUnitário.replace(".", "").replace(",", ".");
+    valorUnitário = valorUnitário ? valorUnitário.replace(".", "").replace(",", ".") : "0";
     valorUnitário = parseFloat(valorUnitário);
 
     let totalBruto = parseInt(quantidade) * valorUnitário;

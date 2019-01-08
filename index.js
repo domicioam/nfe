@@ -80,7 +80,8 @@ var destinatários = [
 var produtos = [
   {
     id: 0,
-    descrição: "Botijão de Gás P13"
+    descrição: "Botijão de Gás P13",
+    valorUnitário: "65,00"
   }
 ];
 
