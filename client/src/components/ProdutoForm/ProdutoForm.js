@@ -43,7 +43,7 @@ class ProdutoForm extends Component {
     e.preventDefault();
 
     let formErrors = this.validateAll();
-    this.setState({ formErrors }, 
+    this.setState({ formErrors },
       () => {
         if (this.props.formValid(this.state)) {
           let novoProduto = {
@@ -57,10 +57,10 @@ class ProdutoForm extends Component {
             desconto: this.state.descontos,
             total: this.state.totalLíquido
           };
-    
+
           this.props.produtos.push(novoProduto);
         } else {
-    
+
         }
       });
   }
@@ -100,33 +100,36 @@ class ProdutoForm extends Component {
     let formErrors = { ...this.state.formErrors };
 
     formErrors[name] = this.validateProperty(name, value);
-    this.setState({ formErrors, [name]: value });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.quantidade !== this.state.quantidade
-      || prevState.valorUnitário !== this.state.valorUnitário
-    ) {
-      let totalBruto = this.calcularTotalBruto(this.state.quantidade, this.state.valorUnitário);
-      this.setState({ totalBruto });
-    } else if (
-      prevState.totalBruto !== this.state.totalBruto
-      || prevState.descontos !== this.state.descontos
-      || prevState.frete !== this.state.frete
-      || prevState.seguro !== this.state.seguro
-      || prevState.outros !== this.state.outros
-    ) {
-      let totalLíquido = this.calcularTotalLíquido(this.state);
-      this.setState({ totalLíquido });
-    } else if (
-      prevState.produto !== this.state.produto
-    ) {
-      let id = parseInt(this.state.produto);
-      let produto = produtos.filter(produto => produto.id === id);
-      let valorUnitário = produto[0] ? produto[0].valorUnitário : "0";
-      this.setState({ valorUnitário });
-    }
+    this.setState({ formErrors, [name]: value },
+      () => {
+        switch (name) {
+          case "quantidade":
+          case "valorUnitário":
+            var totalBruto = this.calcularTotalBruto(this.state.quantidade, this.state.valorUnitário);
+            debugger;
+            this.setState({ totalBruto });
+            break;
+          case "totalBruto":
+          case "descontos":
+          case "frete":
+          case "seguro":
+          case "outros":
+            let totalLíquido = this.calcularTotalLíquido(this.state);
+            this.setState({ totalLíquido });
+            break;
+          case "produto":
+            let id = parseInt(this.state.produto);
+            let produto = produtos.filter(produto => produto.id === id);
+            let valorUnitário = produto[0] ? produto[0].valorUnitário : "0";
+            var totalBruto = this.calcularTotalBruto(this.state.quantidade, valorUnitário);
+            this.setState({ valorUnitário, totalBruto },
+              () => {
+                var totalLíquido = this.calcularTotalLíquido(this.state);
+                this.setState({ totalLíquido });
+              });
+            break;
+        }
+      });
   }
 
   calcularTotalBruto = (quantidade, valorUnitário) => {
