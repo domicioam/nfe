@@ -46,10 +46,12 @@ class ProdutoForm extends Component {
     this.setState({ formErrors },
       () => {
         if (this.props.formValid(this.state)) {
+          let produtoFiltered = produtos.filter(produto => produto.id == this.state.produto);
+
           let novoProduto = {
             id: this.state.produtoId,
             quantidade: this.state.quantidade,
-            descrição: produtos.filter(produto => produto.id === this.state.produtoId)[0].descrição,
+            descrição: produtoFiltered[0].descrição,
             valorUnitário: this.state.valorUnitário,
             frete: this.state.frete,
             seguro: this.state.seguro,
@@ -58,7 +60,7 @@ class ProdutoForm extends Component {
             total: this.state.totalLíquido
           };
 
-          this.props.produtos.push(novoProduto);
+          this.props.addProduto(novoProduto);
         } else {
 
         }
@@ -106,7 +108,7 @@ class ProdutoForm extends Component {
           case "quantidade":
           case "valorUnitário":
             var totalBruto = this.calcularTotalBruto(this.state.quantidade, this.state.valorUnitário);
-            debugger;
+            
             this.setState({ totalBruto });
             break;
           case "totalBruto":
@@ -278,7 +280,8 @@ class ProdutoForm extends Component {
 
 ProdutoForm.propTypes = {
   formValid: PropTypes.func.isRequired,
-  produtos: PropTypes.array.isRequired
+  produtos: PropTypes.array.isRequired,
+  addProduto: PropTypes.func.isRequired
 }
 
 export default ProdutoForm;

@@ -10,7 +10,7 @@ import PagamentoForm from '../PagamentoForm/PagamentoForm';
 
 const formValid = ({ formErrors }) => {
   let valid = true;
-debugger;
+
   Object.values(formErrors).forEach(val => {
     val.length > 0 && (valid = false);
   });
@@ -48,6 +48,8 @@ export default class NotaFiscalForm extends Component {
         pagamentos: ""
       }
     };
+
+    this.addProduto = this.addProduto.bind(this);
   }
 
   async componentDidMount() {
@@ -78,6 +80,43 @@ export default class NotaFiscalForm extends Component {
       //criar componente para produtos e pagamentos
     }
   }
+
+  addProduto(novoProduto) {
+    let produtos = this.state.produtos;
+    produtos.push(novoProduto);
+
+    this.setState({ produtos });
+  }
+
+  renderProdutos() {
+    if (this.state.produtos.length != 0) {
+
+      const produtos = this.state.produtos.map((produto) =>
+        <tr key={produto.id}>
+          <td>{produto.quantidade}</td>
+          <td>{produto.descrição}</td>
+          <td>{produto.valorUnitário}</td>
+          <td>{produto.frete}</td>
+          <td>{produto.seguro}</td>
+          <td>{produto.outros}</td>
+          <td>{produto.desconto}</td>
+          <td>{produto.total}</td>
+          <td>
+            <FontAwesomeIcon icon="trash" />
+          </td>
+        </tr>
+      );
+
+      return produtos;
+    }
+    else {
+      return (
+        <tr>
+          <td colSpan="9" className="text-center">Nenhum produto adicionado.</td>
+        </tr>
+      );
+    }
+  };
 
   render() {
     return (
@@ -150,7 +189,7 @@ export default class NotaFiscalForm extends Component {
         </div>
         <hr />
         <h6>Produtos e Serviços</h6>
-        <ProdutoForm formValid={formValid} produtos={this.state.produtos} />
+        <ProdutoForm formValid={formValid} addProduto={this.addProduto} produtos={this.state.produtos} />
         <div className="table-responsive">
           <table id="tbProdutos" className="table table-striped">
             <thead>
@@ -167,19 +206,7 @@ export default class NotaFiscalForm extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>01</td>
-                <td>Gás P13</td>
-                <td>65,00</td>
-                <td>0,00</td>
-                <td>0,00</td>
-                <td>0,00</td>
-                <td>0,00</td>
-                <td>65,00</td>
-                <td>
-                  <FontAwesomeIcon icon="trash" />
-                </td>
-              </tr>
+              {this.renderProdutos()}
             </tbody>
           </table>
         </div>
