@@ -83,13 +83,13 @@ class ProdutoForm extends Component {
 
     switch (name) {
       case "quantidade":
-        errorMessage = value.length <= 0 ? "Campo obrigatório" : "";
-        errorMessage = errorMessage ? errorMessage : value < 1 ? "Valor inválido" : "";
+        errorMessage = value.length <= 0 ? "Campo obrigatório." : "";
+        errorMessage = errorMessage ? errorMessage : value < 1 ? "Valor inválido." : "";
         break;
       case "produto":
-        errorMessage = value ? "" : "Campo obrigatório";
+        errorMessage = value ? "" : "Campo obrigatório.";
         let filteredProdutos = this.props.produtos.filter(produto => produto.id === this.state.produto);
-        errorMessage = filteredProdutos.length !== 0 ? "Produto duplicado" : errorMessage;
+        errorMessage = filteredProdutos.length !== 0 ? "Produto duplicado." : errorMessage;
         
         break;
     }
