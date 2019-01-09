@@ -34,6 +34,7 @@ export default class NotaFiscalForm extends Component {
         naturezaOperação: null
       },
       produtos: [],
+      totalProdutos: "0,00",
       pagamentos: [],
       formErrors: {
         cabeçalho: {
@@ -50,6 +51,7 @@ export default class NotaFiscalForm extends Component {
     };
 
     this.addProduto = this.addProduto.bind(this);
+    this.addPagamento = this.addPagamento.bind(this);
   }
 
   async componentDidMount() {
@@ -85,12 +87,58 @@ export default class NotaFiscalForm extends Component {
     let produtos = this.state.produtos;
     produtos.push(novoProduto);
 
-    this.setState({ produtos });
+    let totalProdutos = this.calcularTotalProdutos().toLocaleString("pt-BR", { minimumFractionDigits: 2})
+    this.setState({ produtos, totalProdutos });
   }
+
+  addPagamento(novoPagamento) {
+    let pagamentos = this.state.pagamentos;
+    pagamentos.push(novoPagamento);
+
+    this.setState({ pagamentos });
+  }
+
+  calcularTotalProdutos = () => {
+    let sum = 0;
+
+    for (let produto of this.state.produtos) {
+
+      let total = parseFloat(produto.total
+        .replace(".", "")
+        .replace(",", "."));
+
+      sum += total;
+    }
+
+    return sum;
+  }
+
+  renderPagamentos() {
+    if (this.state.pagamentos.length != 0) {
+      const pagamentos = this.state.pagamentos.map((pagamento) =>
+        <tr key={pagamento.forma}>
+          <td>{pagamento.parcelas}</td>
+          <td>{pagamento.valorParcela}</td>
+          <td>{pagamento.forma}</td>
+          <td>
+            <FontAwesomeIcon icon="trash" />
+          </td>
+        </tr>
+      );
+
+      return pagamentos;
+    }
+    else {
+      return (
+        <tr>
+          <td colSpan="4" className="text-center">Nenhum pagamento adicionado.</td>
+        </tr>
+      );
+    }
+  };
 
   renderProdutos() {
     if (this.state.produtos.length != 0) {
-
       const produtos = this.state.produtos.map((produto) =>
         <tr key={produto.id}>
           <td>{produto.quantidade}</td>
@@ -212,7 +260,7 @@ export default class NotaFiscalForm extends Component {
         </div>
         <hr />
         <h6>Formas de Pagamentos</h6>
-        <PagamentoForm formValid={formValid} pagamentos={this.state.pagamentos} />
+        <PagamentoForm formValid={formValid} addPagamento={this.addPagamento} pagamentos={this.state.pagamentos} totalProdutos={this.state.totalProdutos} />
         <div className="table-responsive">
           <table className="table table-striped">
             <thead>
@@ -224,14 +272,7 @@ export default class NotaFiscalForm extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>01</td>
-                <td>65,00</td>
-                <td>Dinheiro</td>
-                <td>
-                  <FontAwesomeIcon icon="trash" />
-                </td>
-              </tr>
+              {this.renderPagamentos()}
             </tbody>
           </table>
         </div>
