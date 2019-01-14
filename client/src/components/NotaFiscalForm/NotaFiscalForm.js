@@ -307,7 +307,7 @@ export default class NotaFiscalForm extends Component {
           <div id="button-group-submit" className="row">
             <div className="col-lg-12">
               <button type="submit" className="btn btn-primary float-right">Enviar</button>
-              <button type="button" className="btn btn-secondary float-right" data-dismiss="modal">Cancelar</button>
+              <button type="button" onClick={this.props.toogleDisplayForm} className="btn btn-secondary float-right" data-dismiss="modal">Cancelar</button>
             </div>
           </div>
         </form>
