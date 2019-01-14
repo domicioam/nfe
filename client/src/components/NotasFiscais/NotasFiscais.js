@@ -10,7 +10,7 @@ export default class NotasFiscais extends Component {
     super(props);
 
     this.state = {
-      displayForm: true,
+      displayForm: false,
       notas: []
     };
   }
