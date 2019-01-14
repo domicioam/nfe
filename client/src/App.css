@@ -1,3 +1,7 @@
 .App {
   position: relative;
 }
+
+main {
+  padding-bottom: 70px;
+}

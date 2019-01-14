@@ -26,7 +26,7 @@ class App extends Component {
             <Route exact path="/" component={NotasFiscais} />
             <Route path="/destinatários" component={Destinatários} />
           </main>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </BrowserRouter>
     );

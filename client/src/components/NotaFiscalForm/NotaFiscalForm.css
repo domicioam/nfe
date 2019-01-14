@@ -35,5 +35,6 @@ h6 {
 }
 
 #button-group-submit button {
+  margin-top: 10px;
   margin-left: 5px;
 }
