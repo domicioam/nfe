@@ -15,17 +15,12 @@ h6 {
   margin-bottom: 10px;
 }
 
-.NotasFiscais .input-group-input {
+.NotaFiscalForm .input-group-input {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.NotaFiscalModal .modal-footer-custom {
-  padding: 0px;
-  padding-top: 1rem;
-}
-
-.NotaFiscalModal .table {
+.NotaFiscalForm .table {
   margin-bottom: 0;
 }
 
@@ -33,4 +28,12 @@ h6 {
   border: red;
   border-width: thin;
   border-style: solid;
+}
+
+.NotaFiscalForm > Header > div {
+  margin-top: 10px;
+}
+
+#button-group-submit button {
+  margin-left: 5px;
 }
