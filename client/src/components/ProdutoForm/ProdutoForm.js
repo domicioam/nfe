@@ -173,14 +173,14 @@ class ProdutoForm extends Component {
         <div className="row">
           <fieldset className="form-group col-lg-2">
             <label>Quantidade:</label>
-            <input name="quantidade" type="number" className={"form-control form-control-sm " + (formErrors.quantidade.length > 0 ? "form-control-invalid" : "")} value={this.state.quantidade} onChange={this.handleChange} />
+            <input name="quantidade" type="number" className={"form-control  " + (formErrors.quantidade.length > 0 ? "form-control-invalid" : "")} value={this.state.quantidade} onChange={this.handleChange} />
             {formErrors.quantidade.length > 0 && (
               <small className="text-danger">{formErrors.quantidade}</small>
             )}
           </fieldset>
           <fieldset className="form-group col-lg-4">
             <label>Produto:</label>
-            <select className={"form-control form-control-sm " + (formErrors.produto.length > 0 ? "form-control-invalid" : "")} name="produto" value={this.state.produto} onChange={this.handleChange}>
+            <select className={"form-control  " + (formErrors.produto.length > 0 ? "form-control-invalid" : "")} name="produto" value={this.state.produto} onChange={this.handleChange}>
               <option></option>
               {
                 produtos.map(produto => {
@@ -194,23 +194,23 @@ class ProdutoForm extends Component {
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Valor Unitário:</label>
-            <div className="input-group input-group-sm">
+            <div className="input-group ">
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
               <CurrencyInput name="valorUnitário" value={this.state.valorUnitário}
-                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                onChangeEvent={this.handleChange} className="form-control "
                 decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Total Bruto:</label>
-            <div className="input-group input-group-sm">
+            <div className="input-group ">
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
               <CurrencyInput name="totalBruto" value={this.state.totalBruto}
-                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                onChangeEvent={this.handleChange} className="form-control "
                 decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
@@ -218,63 +218,63 @@ class ProdutoForm extends Component {
         <div className="row">
           <fieldset className="form-group col-lg-2">
             <label>Descontos:</label>
-            <div className="input-group input-group-sm">
+            <div className="input-group ">
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
               <CurrencyInput name="descontos" value={this.state.descontos}
-                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                onChangeEvent={this.handleChange} className="form-control "
                 decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-2">
             <label>Frete:</label>
-            <div className="input-group input-group-sm">
+            <div className="input-group ">
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
               <CurrencyInput name="frete" value={this.state.frete}
-                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                onChangeEvent={this.handleChange} className="form-control "
                 decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-2">
             <label>Outros:</label>
-            <div className="input-group input-group-sm">
+            <div className="input-group ">
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
               <CurrencyInput name="outros" value={this.state.outros}
-                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                onChangeEvent={this.handleChange} className="form-control "
                 decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Seguro:</label>
-            <div className="input-group input-group-sm">
+            <div className="input-group ">
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
               <CurrencyInput name="seguro" value={this.state.seguro}
-                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                onChangeEvent={this.handleChange} className="form-control "
                 decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
           <fieldset className="form-group col-lg-3">
             <label>Total Líquido:</label>
-            <div className="input-group input-group-sm">
+            <div className="input-group ">
               <div className="input-group-prepend">
                 <span className="input-group-text">R$</span>
               </div>
               <CurrencyInput name="totalLíquido" value={this.state.totalLíquido}
-                onChangeEvent={this.handleChange} className="form-control form-control-sm"
+                onChangeEvent={this.handleChange} className="form-control "
                 decimalSeparator="," thousandSeparator="." />
             </div>
           </fieldset>
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <button onClick={this.handleSubmit} className="btn btn-success btn-sm float-right">Gravar Produto</button>
+            <button onClick={this.handleSubmit} className="btn btn-success  float-right">Gravar Produto</button>
           </div>
         </div>
       </div>

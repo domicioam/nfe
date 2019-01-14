@@ -92,19 +92,19 @@ class PagamentoForm extends Component {
       <div className="row">
         <fieldset className="form-group col-lg-2">
           <label>Parcelas:</label>
-          <input type="number" name="parcelas" value={this.state.parcelas} onChange={this.handleChange} className={"form-control form-control-sm " + (formErrors.parcelas.length > 0 ? "form-control-invalid" : "")} />
+          <input type="number" name="parcelas" value={this.state.parcelas} onChange={this.handleChange} className={"form-control  " + (formErrors.parcelas.length > 0 ? "form-control-invalid" : "")} />
           {formErrors.parcelas.length > 0 && (
             <small className="text-danger">{formErrors.parcelas}</small>
           )}
         </fieldset>
         <fieldset className="form-group col-lg-2">
           <label>Valor Parcela:</label>
-          <div className="input-group input-group-sm ">
+          <div className="input-group  ">
             <div className="input-group-prepend">
               <span className="input-group-text">R$</span>
             </div>
             <CurrencyInput name="valorParcela" value={this.state.valorParcela}
-              onChangeEvent={this.handleChange} className={"form-control form-control-sm " + (formErrors.valorParcela.length > 0 ? "form-control-invalid" : "")}
+              onChangeEvent={this.handleChange} className={"form-control  " + (formErrors.valorParcela.length > 0 ? "form-control-invalid" : "")}
               decimalSeparator="," thousandSeparator="." />
             {formErrors.valorParcela.length > 0 && (
               <small className="text-danger">{formErrors.valorParcela}</small>
@@ -113,7 +113,7 @@ class PagamentoForm extends Component {
         </fieldset>
         <fieldset className="form-group col-lg-2">
           <label>Forma:</label>
-          <select className={"form-control form-control-sm " + (formErrors.formaPagamento.length > 0 ? "form-control-invalid" : "")}
+          <select className={"form-control  " + (formErrors.formaPagamento.length > 0 ? "form-control-invalid" : "")}
             value={this.state.formaPagamento} onChange={this.handleChange}>
             <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de Débito">Cartão de Débito</option>
@@ -124,7 +124,7 @@ class PagamentoForm extends Component {
           )}
         </fieldset>
         <fieldset className="form-group col-lg-auto">
-          <button id="btnGravarPagamento" onClick={this.handleSubmit} className="btn btn-success btn-sm float-right">Gravar Pagamento</button>
+          <button id="btnGravarPagamento" onClick={this.handleSubmit} className="btn btn-success  float-right">Gravar Pagamento</button>
         </fieldset>
       </div>
     );

@@ -197,7 +197,7 @@ export default class NotaFiscalForm extends Component {
         </header>
         <hr />
         <form onSubmit={this.handleSubmit} noValidate>
-          <h6>Cabeçalho da Nota:</h6>
+          <h5>Cabeçalho da Nota:</h5>
           <div id="identificação" className="row">
             <fieldset className="col-lg-auto">
               <label>Tipo: NFC-e</label>
@@ -212,7 +212,7 @@ export default class NotaFiscalForm extends Component {
           <div className="row">
             <fieldset className="form-group col-lg-4">
               <label>Destinatário:</label>
-              <select className="form-control form-control-sm">
+              <select className="form-control ">
                 <option></option>
                 {
                   destinatários.map(dest => {
@@ -223,11 +223,11 @@ export default class NotaFiscalForm extends Component {
             </fieldset>
             <fieldset className="form-group col-lg-4">
               <label>CPF / CNPJ:</label>
-              <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control " />
             </fieldset>
             <fieldset className="form-group col-lg-4">
               <label>Indicador Presença:</label>
-              <select className="form-control form-control-sm">
+              <select className="form-control ">
                 <option value="presencial">Presencial</option>
                 <option value="não_aplica">Não se aplica</option>
                 <option value="internet">Não presencial, internet</option>
@@ -240,7 +240,7 @@ export default class NotaFiscalForm extends Component {
           <div className="row">
             <fieldset className="form-group col-lg-4">
               <label>Finalidade:</label>
-              <select className="form-control form-control-sm">
+              <select className="form-control ">
                 <option value="normal">Normal</option>
                 <option value="complementar">Complementar</option>
                 <option value="ajuste">Ajuste</option>
@@ -255,16 +255,16 @@ export default class NotaFiscalForm extends Component {
                     <FontAwesomeIcon icon="calendar-alt" />
                   </div>
                 </div>
-                <Datetime inputProps={{ className: "form-control form-control-sm input-group-input" }} />
+                <Datetime inputProps={{ className: "form-control  input-group-input" }} />
               </div>
             </fieldset>
             <fieldset className="form-group col-lg-4">
               <label>Natureza da Operação:</label>
-              <input type="text" className="form-control form-control-sm" />
+              <input type="text" className="form-control " />
             </fieldset>
           </div>
           <hr />
-          <h6>Produtos e Serviços</h6>
+          <h5>Produtos e Serviços</h5>
           <ProdutoForm formValid={formValid} addProduto={this.addProduto} produtos={this.state.produtos} />
           <div id="tbProdutos" className={"table-responsive" + (formErrors.produtos.length > 0 ? " table-invalid" : "")}>
             <table className="table table-striped">
@@ -287,7 +287,7 @@ export default class NotaFiscalForm extends Component {
             </table>
           </div>
           <hr />
-          <h6>Formas de Pagamentos</h6>
+          <h5>Formas de Pagamentos</h5>
           <PagamentoForm formValid={formValid} addPagamento={this.addPagamento} pagamentos={this.state.pagamentos} totalProdutos={this.state.totalProdutos} />
           <div className={"table-responsive" + (formErrors.pagamentos.length > 0 ? " table-invalid" : "")}>
             <table className="table table-striped">
@@ -306,8 +306,8 @@ export default class NotaFiscalForm extends Component {
           </div>
           <div id="button-group-submit" className="row">
             <div className="col-lg-12">
-              <button type="submit" className="btn btn-primary btn-sm float-right">Enviar</button>
-              <button type="button" onClick={this.props.toogleDisplayForm} className="btn btn-secondary btn-sm float-right" data-dismiss="modal">Cancelar</button>
+              <button type="submit" className="btn btn-primary  float-right">Enviar</button>
+              <button type="button" onClick={this.props.toogleDisplayForm} className="btn btn-secondary  float-right" data-dismiss="modal">Cancelar</button>
             </div>
           </div>
         </form>
