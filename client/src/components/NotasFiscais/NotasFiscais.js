@@ -3,14 +3,16 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './NotasFiscais.css';
-import NotaFiscalForm from '../NotaFiscalForm/NotaFiscalForm';
+import NFeForm from './NFeForm/NFeForm';
+import NFCeForm from './NFCeForm/NFCeForm';
 
 export default class NotasFiscais extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      displayForm: false,
+      displayNFeForm: false,
+      displayNFCeForm: false,
       notas: []
     };
   }
@@ -20,8 +22,13 @@ export default class NotasFiscais extends Component {
     this.setState({ notas: res.data });
   }
 
-  toogleDisplayForm = () => {
-    this.setState({ displayForm: !this.state.displayForm });
+  toogleDisplayNFeForm = () => {
+    this.setState({ displayNFeForm: !this.state.displayNFeForm });
+  }
+
+  toogleDisplayNFCeForm = () => {
+    console.log("aqui");
+    this.setState({ displayNFCeForm: !this.state.displayNFCeForm });
   }
 
   renderContent() {
@@ -48,14 +55,14 @@ export default class NotasFiscais extends Component {
   }
 
   renderList() {
-    if (!this.state.displayForm) {
+    if (!this.state.displayNFeForm && !this.state.displayNFCeForm) {
 
       return (
         <React.Fragment>
           <header className="row">
             <div className="col-lg-12">
-              <button onClick={this.toogleDisplayForm} className="btn btn-success float-right">Nova NF-e</button>
-              <button onClick={this.toogleDisplayForm} className="btn btn-success float-right">Nova NFC-e</button>
+              <button onClick={this.toogleDisplayNFeForm} className="btn btn-success float-right">Nova NF-e</button>
+              <button onClick={this.toogleDisplayNFCeForm} className="btn btn-success float-right">Nova NFC-e</button>
             </div>
           </header>
           <div className="table-responsive">
@@ -85,10 +92,20 @@ export default class NotasFiscais extends Component {
     }
   }
 
-  renderForm() {
-    if (this.state.displayForm) {
+  renderNFeForm() {
+    if (this.state.displayNFeForm) {
       return (
-        <NotaFiscalForm toogleDisplayForm={this.toogleDisplayForm} />
+        <NFeForm toogleDisplayNFeForm={this.toogleDisplayNFeForm} />
+      );
+    } else {
+      return null;
+    }
+  }
+
+  renderNFCeForm() {
+    if (this.state.displayNFCeForm) {
+      return (
+        <NFCeForm toogleDisplayNFCeForm={this.toogleDisplayNFCeForm} />
       );
     } else {
       return null;
@@ -99,7 +116,8 @@ export default class NotasFiscais extends Component {
     return (
       <section className="NotasFiscais">
         {this.renderList()}
-        {this.renderForm()}
+        {this.renderNFeForm()}
+        {this.renderNFCeForm()}
       </section>
     );
   }

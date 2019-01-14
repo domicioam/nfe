@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './NotaFiscalForm.css';
+import './NFCeForm.css';
 
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Datetime from 'react-datetime';
 
 import './react-datetime.css';
-import ProdutoForm from '../ProdutoForm/ProdutoForm';
-import PagamentoForm from '../PagamentoForm/PagamentoForm';
+import ProdutoForm from './ProdutoForm/ProdutoForm';
+import PagamentoForm from './PagamentoForm/PagamentoForm';
 
-export default class NotaFiscalForm extends Component {
+export default class NFCeForm extends Component {
   constructor(props) {
     super(props);
 
@@ -189,10 +189,10 @@ export default class NotaFiscalForm extends Component {
     const { formErrors } = this.state;
 
     return (
-      <section className="NotaFiscalForm">
+      <section className="NFCeForm">
         <header className="row">
           <div className="col-lg-12">
-            <button onClick={this.props.toogleDisplayForm} className="btn btn-secondary float-right">Voltar</button>
+            <button onClick={this.props.toogleDisplayNFCeForm} className="btn btn-secondary float-right">Voltar</button>
           </div>
         </header>
         <hr />
@@ -307,7 +307,7 @@ export default class NotaFiscalForm extends Component {
           <div id="button-group-submit" className="row">
             <div className="col-lg-12">
               <button type="submit" className="btn btn-primary  float-right">Enviar</button>
-              <button type="button" onClick={this.props.toogleDisplayForm} className="btn btn-secondary  float-right" data-dismiss="modal">Cancelar</button>
+              <button type="button" onClick={this.props.toogleDisplayNFCeForm} className="btn btn-secondary  float-right" data-dismiss="modal">Cancelar</button>
             </div>
           </div>
         </form>

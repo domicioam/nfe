@@ -1,0 +1,40 @@
+h5 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#tbProdutos {
+  margin-top: 10px;
+}
+
+#btnGravarPagamento {
+  margin-top: 31.5px;
+}
+
+#identificação {
+  margin-bottom: 10px;
+}
+
+.NFCeForm .input-group-input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.NFCeForm .table {
+  margin-bottom: 0;
+}
+
+.table-invalid {
+  border: red;
+  border-width: thin;
+  border-style: solid;
+}
+
+.NFCeForm > Header > div {
+  margin-top: 10px;
+}
+
+#button-group-submit button {
+  margin-top: 10px;
+  margin-left: 5px;
+}
