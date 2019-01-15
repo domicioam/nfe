@@ -61,8 +61,8 @@ export default class NotasFiscais extends Component {
         <React.Fragment>
           <header className="row">
             <div className="col-lg-12">
-              <button onClick={this.toogleDisplayNFeForm} className="btn btn-success float-right">Nova NF-e</button>
-              <button onClick={this.toogleDisplayNFCeForm} className="btn btn-success float-right">Nova NFC-e</button>
+              <button onClick={this.toogleDisplayNFeForm} className="btn btn-primary float-right">Nova NF-e</button>
+              <button onClick={this.toogleDisplayNFCeForm} className="btn btn-primary float-right">Nova NFC-e</button>
             </div>
           </header>
           <div className="table-responsive">

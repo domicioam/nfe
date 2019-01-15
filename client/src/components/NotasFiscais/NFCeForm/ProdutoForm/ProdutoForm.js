@@ -57,7 +57,7 @@ class ProdutoForm extends Component {
             seguro: this.state.seguro,
             outros: this.state.outros,
             desconto: this.state.descontos,
-            total: this.state.totalLíquido.toLocaleString("pt-BR", { minimumFractionDigits: 2})
+            total: this.state.totalLíquido.toLocaleString("pt-BR", { minimumFractionDigits: 2 })
           };
 
           this.props.addProduto(novoProduto);
@@ -90,7 +90,7 @@ class ProdutoForm extends Component {
         errorMessage = value ? "" : "Campo obrigatório.";
         let filteredProdutos = this.props.produtos.filter(produto => produto.id === this.state.produto);
         errorMessage = filteredProdutos.length !== 0 ? "Produto duplicado." : errorMessage;
-        
+
         break;
     }
 
@@ -169,16 +169,16 @@ class ProdutoForm extends Component {
     const { formErrors } = this.state;
 
     return (
-      <div>
+      <React.Fragment>
         <div className="row">
-          <fieldset className="form-group col-lg-2">
+          <fieldset className="form-group col-lg-6">
             <label>Quantidade:</label>
             <input name="quantidade" type="number" className={"form-control  " + (formErrors.quantidade.length > 0 ? "form-control-invalid" : "")} value={this.state.quantidade} onChange={this.handleChange} />
             {formErrors.quantidade.length > 0 && (
               <small className="text-danger">{formErrors.quantidade}</small>
             )}
           </fieldset>
-          <fieldset className="form-group col-lg-4">
+          <fieldset className="form-group col-lg-6">
             <label>Produto:</label>
             <select className={"form-control  " + (formErrors.produto.length > 0 ? "form-control-invalid" : "")} name="produto" value={this.state.produto} onChange={this.handleChange}>
               <option></option>
@@ -192,7 +192,9 @@ class ProdutoForm extends Component {
               <small className="text-danger">{formErrors.produto}</small>
             )}
           </fieldset>
-          <fieldset className="form-group col-lg-3">
+        </div>
+        <div className="row">
+          <fieldset className="form-group col-lg-6">
             <label>Valor Unitário:</label>
             <div className="input-group ">
               <div className="input-group-prepend">
@@ -205,11 +207,11 @@ class ProdutoForm extends Component {
           </fieldset>
         </div>
         <div className="row">
-          <div className="col-lg-12">
-            <button onClick={this.handleSubmit} className="btn btn-success  float-right">Gravar Produto</button>
-          </div>
+        <fieldset className="form-group col-lg-auto">
+            <button onClick={this.handleSubmit} className="btn btn-primary">Gravar Produto</button>
+          </fieldset>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -163,10 +163,6 @@ export default class NFCeForm extends Component {
           <td>{produto.quantidade}</td>
           <td>{produto.descrição}</td>
           <td>{produto.valorUnitário}</td>
-          <td>{produto.frete}</td>
-          <td>{produto.seguro}</td>
-          <td>{produto.outros}</td>
-          <td>{produto.desconto}</td>
           <td>{produto.total}</td>
           <td>
             <FontAwesomeIcon icon="trash" />
@@ -179,7 +175,7 @@ export default class NFCeForm extends Component {
     else {
       return (
         <tr>
-          <td colSpan="9" className="text-center">Nenhum produto adicionado.</td>
+          <td colSpan="5" className="text-center">Nenhum produto adicionado.</td>
         </tr>
       );
     }
@@ -192,25 +188,14 @@ export default class NFCeForm extends Component {
       <section className="NFCeForm">
         <header className="row">
           <div className="col-lg-12">
-            <button onClick={this.props.toogleDisplayNFCeForm} className="btn btn-secondary float-right">Voltar</button>
+            <button onClick={this.props.toogleDisplayNFCeForm} className="btn btn-light float-right">Voltar</button>
           </div>
         </header>
         <hr />
         <form onSubmit={this.handleSubmit} noValidate>
-          <h5>Cabeçalho da Nota:</h5>
-          <div id="identificação" className="row">
-            <fieldset className="col-lg-auto">
-              <label>Tipo: NFC-e</label>
-            </fieldset>
-            <fieldset className="col-lg-auto">
-              <label>Série: 003</label>
-            </fieldset>
-            <fieldset className="col-lg-auto">
-              <label>Nº: 368</label>
-            </fieldset>
-          </div>
+          <h5>Destinatário</h5>
           <div className="row">
-            <fieldset className="form-group col-lg-4">
+            <fieldset className="form-group col-lg-6">
               <label>Destinatário:</label>
               <select className="form-control ">
                 <option></option>
@@ -221,45 +206,8 @@ export default class NFCeForm extends Component {
                 }
               </select>
             </fieldset>
-            <fieldset className="form-group col-lg-4">
+            <fieldset className="form-group col-lg-6">
               <label>CPF / CNPJ:</label>
-              <input type="text" className="form-control " />
-            </fieldset>
-            <fieldset className="form-group col-lg-4">
-              <label>Indicador Presença:</label>
-              <select className="form-control ">
-                <option value="presencial">Presencial</option>
-                <option value="não_aplica">Não se aplica</option>
-                <option value="internet">Não presencial, internet</option>
-                <option value="teleatendimento">Não presencial, teleatendimento</option>
-                <option value="domicílio">Entrega a domicílio</option>
-                <option value="outros">Não presencial, outros</option>
-              </select>
-            </fieldset>
-          </div>
-          <div className="row">
-            <fieldset className="form-group col-lg-4">
-              <label>Finalidade:</label>
-              <select className="form-control ">
-                <option value="normal">Normal</option>
-                <option value="complementar">Complementar</option>
-                <option value="ajuste">Ajuste</option>
-                <option value="devolução">Devolução</option>
-              </select>
-            </fieldset>
-            <fieldset className="form-group col-lg-4">
-              <label>Data / Hora Saída:</label>
-              <div className="input-group">
-                <div className="input-group-prepend">
-                  <div className="input-group-text">
-                    <FontAwesomeIcon icon="calendar-alt" />
-                  </div>
-                </div>
-                <Datetime inputProps={{ className: "form-control  input-group-input" }} />
-              </div>
-            </fieldset>
-            <fieldset className="form-group col-lg-4">
-              <label>Natureza da Operação:</label>
               <input type="text" className="form-control " />
             </fieldset>
           </div>
@@ -270,13 +218,9 @@ export default class NFCeForm extends Component {
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>Qtde.</th>
+                  <th>Quantidade</th>
                   <th>Descrição</th>
                   <th>Valor</th>
-                  <th>Frete</th>
-                  <th>Seguro</th>
-                  <th>Outros</th>
-                  <th>Desconto</th>
                   <th>Total</th>
                   <th>Ações</th>
                 </tr>
@@ -306,7 +250,7 @@ export default class NFCeForm extends Component {
           </div>
           <div id="button-group-submit" className="row">
             <div className="col-lg-12">
-              <button type="submit" className="btn btn-primary  float-right">Enviar</button>
+              <button type="submit" className="btn btn-success  float-right" style={{width: "150px"}}>Enviar</button>
               <button type="button" onClick={this.props.toogleDisplayNFCeForm} className="btn btn-secondary  float-right" data-dismiss="modal">Cancelar</button>
             </div>
           </div>

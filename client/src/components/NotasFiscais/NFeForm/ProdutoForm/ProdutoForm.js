@@ -274,7 +274,7 @@ class ProdutoForm extends Component {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <button onClick={this.handleSubmit} className="btn btn-success  float-right">Gravar Produto</button>
+            <button onClick={this.handleSubmit} className="btn btn-primary  float-right">Gravar Produto</button>
           </div>
         </div>
       </div>

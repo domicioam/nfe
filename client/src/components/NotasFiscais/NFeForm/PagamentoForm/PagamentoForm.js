@@ -90,14 +90,14 @@ class PagamentoForm extends Component {
 
     return (
       <div className="row">
-        <fieldset className="form-group col-lg-2">
+        <fieldset className="form-group col-lg-6">
           <label>Parcelas:</label>
           <input type="number" name="parcelas" value={this.state.parcelas} onChange={this.handleChange} className={"form-control  " + (formErrors.parcelas.length > 0 ? "form-control-invalid" : "")} />
           {formErrors.parcelas.length > 0 && (
             <small className="text-danger">{formErrors.parcelas}</small>
           )}
         </fieldset>
-        <fieldset className="form-group col-lg-2">
+        <fieldset className="form-group col-lg-6">
           <label>Valor Parcela:</label>
           <div className="input-group  ">
             <div className="input-group-prepend">
@@ -111,7 +111,7 @@ class PagamentoForm extends Component {
             )}
           </div>
         </fieldset>
-        <fieldset className="form-group col-lg-2">
+        <fieldset className="form-group col-lg-6">
           <label>Forma:</label>
           <select className={"form-control  " + (formErrors.formaPagamento.length > 0 ? "form-control-invalid" : "")}
             value={this.state.formaPagamento} onChange={this.handleChange}>
@@ -123,9 +123,11 @@ class PagamentoForm extends Component {
             <small className="text-danger">{formErrors.formaPagamento}</small>
           )}
         </fieldset>
-        <fieldset className="form-group col-lg-auto">
-          <button id="btnGravarPagamento" onClick={this.handleSubmit} className="btn btn-success  float-right">Gravar Pagamento</button>
-        </fieldset>
+        <div className="row">
+          <fieldset className="form-group col-lg-auto">
+            <button id="btnGravarPagamento" onClick={this.handleSubmit} className="btn btn-primary  float-right">Gravar Pagamento</button>
+          </fieldset>
+        </div>
       </div>
     );
   }
