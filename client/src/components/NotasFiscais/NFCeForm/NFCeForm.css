@@ -48,14 +48,25 @@
   margin-left: 5px;
 }
 
-@media (max-width: 991px) {
-  .btn-form-inline {
-    margin-top: 0;
-  }
-}
 
 .btn-bellow-table {
   margin-top: 12px;
+}
+
+@media (max-width: 991px) {
+  .NFCeForm section::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .btn-bellow-table {
+    float: right;
+  }
+
+  .NFCeForm .btn-success {
+    width: 100% !important;
+  }
 }
 
 .NFCeForm section {
