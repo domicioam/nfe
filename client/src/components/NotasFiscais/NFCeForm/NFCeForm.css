@@ -1,6 +1,15 @@
-h5 {
-  font-weight: bold;
-  margin-bottom: 15px;
+.NFCeForm h5 {
+  margin-top: -20px;
+  margin-bottom: 25px;
+}
+
+.NFCeForm hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #000;
+  margin: 1em 0;
+  padding: 0; 
 }
 
 #tbProdutos {
@@ -44,3 +53,30 @@ h5 {
     margin-top: 0;
   }
 }
+
+.btn-bellow-table {
+  margin-top: 12px;
+}
+
+.NFCeForm section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.table {
+  border-bottom: 1px solid #ddd;
+}
+
+.NFCeForm .table .thead-light th {
+  border-color: #ddd;
+  background-color: #f5f5f5;
+}
+
+.NFCeForm .btn-light {
+  background-color: #ddd;
+}
+
+#btnVoltar {
+  margin-top: 10px;
+}
+

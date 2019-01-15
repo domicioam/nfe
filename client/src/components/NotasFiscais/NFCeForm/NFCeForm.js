@@ -186,17 +186,21 @@ export default class NFCeForm extends Component {
 
     return (
       <section className="NFCeForm">
-        <header className="row">
-          <div className="col-lg-12">
-            <button onClick={this.props.toogleDisplayNFCeForm} className="btn btn-light float-right">Voltar</button>
-          </div>
-        </header>
-        <hr />
-        <form onSubmit={this.handleSubmit} noValidate>
-          <h5>Destinatário</h5>
+        <header>
           <div className="row">
-            <fieldset className="form-group col-lg-6">
-              <label>Destinatário:</label>
+            <div className="col-lg-12">
+              <button id="btnVoltar" onClick={this.props.toogleDisplayNFCeForm} className="btn btn-light float-right">Voltar</button>
+            </div>
+          </div>
+          <h2>Enviar Nova NFC-e</h2>
+          <hr />
+        </header>
+        <form onSubmit={this.handleSubmit} noValidate>
+          <section>
+
+            <h5>Destinatário</h5>
+            <fieldset className="form-group col-lg-3">
+              <label>Nome:</label>
               <select className="form-control ">
                 <option></option>
                 {
@@ -206,52 +210,56 @@ export default class NFCeForm extends Component {
                 }
               </select>
             </fieldset>
-            <fieldset className="form-group col-lg-6">
+            <fieldset className="form-group col-lg-3">
               <label>CPF / CNPJ:</label>
               <input type="text" className="form-control " />
             </fieldset>
-          </div>
+          </section>
           <hr />
-          <h5>Produtos e Serviços</h5>
-          <ProdutoForm formValid={formValid} addProduto={this.addProduto} produtos={this.state.produtos} />
-          <div id="tbProdutos" className={"table-responsive" + (formErrors.produtos.length > 0 ? " table-invalid" : "")}>
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Quantidade</th>
-                  <th>Descrição</th>
-                  <th>Valor</th>
-                  <th>Total</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.renderProdutos()}
-              </tbody>
-            </table>
-          </div>
+          <section>
+            <h5>Produtos e Serviços</h5>
+            <div id="tbProdutos" className={"table-responsive" + (formErrors.produtos.length > 0 ? " table-invalid" : "")}>
+              <table className="table">
+                <thead className="thead-light">
+                  <tr>
+                    <th>Quantidade</th>
+                    <th>Produto</th>
+                    <th>Valor</th>
+                    <th>Total</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.renderProdutos()}
+                </tbody>
+              </table>
+            </div>
+            <button className="btn btn-primary btn-bellow-table">Adicionar novo produto</button>
+          </section>
           <hr />
-          <h5>Formas de Pagamentos</h5>
-          <PagamentoForm formValid={formValid} addPagamento={this.addPagamento} pagamentos={this.state.pagamentos} totalProdutos={this.state.totalProdutos} />
-          <div className={"table-responsive" + (formErrors.pagamentos.length > 0 ? " table-invalid" : "")}>
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Parcelas</th>
-                  <th>Valor Parcela</th>
-                  <th>Forma</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.renderPagamentos()}
-              </tbody>
-            </table>
-          </div>
+          <section>
+            <h5>Pagamentos</h5>
+            <div className={"table-responsive" + (formErrors.pagamentos.length > 0 ? " table-invalid" : "")}>
+              <table className="table">
+              <thead className="thead-light">
+                  <tr>
+                    <th>Parcelas</th>
+                    <th>Valor Parcela</th>
+                    <th>Forma</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.renderPagamentos()}
+                </tbody>
+              </table>
+            </div>
+            <button className="btn btn-primary btn-bellow-table">Adicionar novo pagamento</button>
+          </section>
+          <hr />
           <div id="button-group-submit" className="row">
             <div className="col-lg-12">
-              <button type="submit" className="btn btn-success  float-right" style={{width: "150px"}}>Enviar</button>
-              <button type="button" onClick={this.props.toogleDisplayNFCeForm} className="btn btn-secondary  float-right" data-dismiss="modal">Cancelar</button>
+              <button type="submit" className="btn btn-success  float-right" style={{ width: "150px" }}>Enviar Nota Fiscal</button>
             </div>
           </div>
         </form>
