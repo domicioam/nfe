@@ -187,11 +187,6 @@ export default class NFCeForm extends Component {
     return (
       <section className="NFCeForm">
         <header>
-          <div className="row">
-            <div className="col-lg-12">
-              <button id="btnVoltar" onClick={this.props.toogleDisplayNFCeForm} className="btn btn-light float-right">Voltar</button>
-            </div>
-          </div>
           <h2>Enviar Nova NFC-e</h2>
           <hr />
         </header>

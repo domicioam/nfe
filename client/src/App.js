@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -9,6 +9,8 @@ import { Header } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import NotasFiscais from './components/NotasFiscais/NotasFiscais';
 import Destinatários from './components/Destinatários/Destinatários';
+import NFCeForm from './components/NotasFiscais/NFCeForm/NFCeForm';
+import NFeForm from './components/NotasFiscais/NFeForm/NFeForm';
 
 class App extends Component {
   constructor(props) {
@@ -19,16 +21,18 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <div className="App">
           <Header />
           <main className="container">
             <Route exact path="/" component={NotasFiscais} />
+            <Route exact path="/notas/nfce" component={NFCeForm} />
+            <Route exact path="/notas/nfe" component={NFeForm} />
             <Route path="/destinatários" component={Destinatários} />
           </main>
           {/* <Footer /> */}
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
