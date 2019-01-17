@@ -3,11 +3,7 @@ import './NFCeForm.css';
 
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Datetime from 'react-datetime';
-
 import './react-datetime.css';
-import ProdutoForm from './ProdutoForm/ProdutoForm';
-import PagamentoForm from './PagamentoForm/PagamentoForm';
 
 export default class NFCeForm extends Component {
   constructor(props) {
