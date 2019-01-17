@@ -1,5 +1,24 @@
-.modal-xl {
-  max-width: 1050px;
+body {
+  background: #f3f3f3;
+}
+
+main {
+  background: #fff;
+  margin-top: 20px;
+}
+
+.table {
+  border-bottom: 1px solid #ddd;
+}
+
+.table-invalid {
+  border: red;
+  border-width: thin;
+  border-style: solid;
+}
+
+.btn-bellow-table {
+  margin-top: 12px;
 }
 
 .form-control-invalid {
@@ -16,14 +35,8 @@
   width: 92% !important;
 }
 
-body {
-  background: #f3f3f3;
-}
-
-main {
-  background: #fff;
-}
-
 .btn-primary {
   background-color: #0D5B9D;
 }
+
+

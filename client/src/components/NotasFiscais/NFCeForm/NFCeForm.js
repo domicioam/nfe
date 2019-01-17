@@ -187,7 +187,7 @@ export default class NFCeForm extends Component {
     return (
       <section className="NFCeForm">
         <header>
-          <h2>Enviar Nova NFC-e</h2>
+          <h2 className="pt-3">Enviar Nova NFC-e</h2>
           <hr />
         </header>
         <form onSubmit={this.handleSubmit} noValidate>
