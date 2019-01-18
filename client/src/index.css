@@ -16,6 +16,12 @@ main {
   margin-top: 45%;
 }
 
+@media (max-width: 991px) {
+  .modal-content {
+    margin-top: 0;
+  }
+}
+
 .table {
   border-bottom: 1px solid #ddd;
 }
