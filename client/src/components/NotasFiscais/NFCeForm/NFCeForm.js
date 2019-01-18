@@ -93,11 +93,13 @@ export default class NFCeForm extends Component {
 
   openProdutoModal(e) {
     e.preventDefault();
+    document.body.classList.add('modal-open');
     this.setState({showProdutoModal: true});
   }
 
   closeProdutoModal(e) {
     e.preventDefault();
+    document.body.classList.remove('modal-open');
     this.setState({showProdutoModal: false});
   }
 
