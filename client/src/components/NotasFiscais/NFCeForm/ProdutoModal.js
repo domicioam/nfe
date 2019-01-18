@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+
 import { PropTypes } from 'prop-types';
 import axios from 'axios';
 import CurrencyInput from 'react-currency-input';
-import { debug } from 'util';
 
 let produtos = [];
 
-class ProdutoForm extends Component {
+class ProdutoModal extends Component {
   constructor(props) {
     super(props);
 
@@ -165,61 +165,66 @@ class ProdutoForm extends Component {
     return totalBruto - descontos + frete + seguro + outros;
   }
 
+
   render() {
     const { formErrors } = this.state;
 
     return (
-      <React.Fragment>
-        <div className="row">
-          <fieldset className="form-group col-lg-6">
-            <label>Quantidade:</label>
-            <input name="quantidade" type="number" className={"form-control  " + (formErrors.quantidade.length > 0 ? "form-control-invalid" : "")} value={this.state.quantidade} onChange={this.handleChange} />
-            {formErrors.quantidade.length > 0 && (
-              <small className="text-danger">{formErrors.quantidade}</small>
-            )}
-          </fieldset>
-          <fieldset className="form-group col-lg-6">
-            <label>Produto:</label>
-            <select className={"form-control  " + (formErrors.produto.length > 0 ? "form-control-invalid" : "")} name="produto" value={this.state.produto} onChange={this.handleChange}>
-              <option></option>
-              {
-                produtos.map(produto => {
-                  return (<option key={produto.id} value={produto.id}>{produto.descrição}</option>)
-                })
-              }
-            </select>
-            {formErrors.produto.length > 0 && (
-              <small className="text-danger">{formErrors.produto}</small>
-            )}
-          </fieldset>
-        </div>
-        <div className="row">
-          <fieldset className="form-group col-lg-6">
-            <label>Valor Unitário:</label>
-            <div className="input-group ">
-              <div className="input-group-prepend">
-                <span className="input-group-text">R$</span>
-              </div>
-              <CurrencyInput name="valorUnitário" value={this.state.valorUnitário}
-                onChangeEvent={this.handleChange} className="form-control "
-                decimalSeparator="," thousandSeparator="." />
+      <div className="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Novo Produto / Serviço</h5>
             </div>
-          </fieldset>
+            <div className="modal-body">
+              <fieldset className="form-group col-lg-3">
+                <label>Quantidade:</label>
+                <input name="quantidade" type="number" className={"form-control  " + (formErrors.quantidade.length > 0 ? "form-control-invalid" : "")} value={this.state.quantidade} onChange={this.handleChange} />
+                {formErrors.quantidade.length > 0 && (
+                  <small className="text-danger">{formErrors.quantidade}</small>
+                )}
+              </fieldset>
+              <fieldset className="form-group col-lg-7">
+                <label>Produto:</label>
+                <select className={"form-control  " + (formErrors.produto.length > 0 ? "form-control-invalid" : "")} name="produto" value={this.state.produto} onChange={this.handleChange}>
+                  <option></option>
+                  {
+                    produtos.map(produto => {
+                      return (<option key={produto.id} value={produto.id}>{produto.descrição}</option>)
+                    })
+                  }
+                </select>
+                {formErrors.produto.length > 0 && (
+                  <small className="text-danger">{formErrors.produto}</small>
+                )}
+              </fieldset>
+              <fieldset className="form-group col-lg-5">
+                <label>Valor Unitário:</label>
+                <div className="input-group ">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">R$</span>
+                  </div>
+                  <CurrencyInput name="valorUnitário" value={this.state.valorUnitário}
+                    onChangeEvent={this.handleChange} className="form-control "
+                    decimalSeparator="," thousandSeparator="." />
+                </div>
+              </fieldset>
+            </div>
+            <div className="modal-footer">
+              <button onClick={this.props.closeProdutoModal} type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button onClick={this.handleSubmit} className="btn btn-primary">Gravar Produto</button>
+            </div>
+          </div>
         </div>
-        <div className="row">
-        <fieldset className="form-group col-lg-auto">
-            <button onClick={this.handleSubmit} className="btn btn-primary">Gravar Produto</button>
-          </fieldset>
-        </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
 
-ProdutoForm.propTypes = {
+ProdutoModal.propTypes = {
   formValid: PropTypes.func.isRequired,
   produtos: PropTypes.array.isRequired,
   addProduto: PropTypes.func.isRequired
 }
 
-export default ProdutoForm;
+export default ProdutoModal;

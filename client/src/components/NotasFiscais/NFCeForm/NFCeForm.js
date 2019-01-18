@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './NFCeForm.css';
+import ProdutoModal  from './ProdutoModal';
 
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,6 +22,7 @@ export default class NFCeForm extends Component {
       produtos: [],
       totalProdutos: "0,00",
       pagamentos: [],
+      showProdutoModal: false,
       formErrors: {
         cabeçalho: {
           destinatário: "",
@@ -37,6 +39,8 @@ export default class NFCeForm extends Component {
 
     this.addProduto = this.addProduto.bind(this);
     this.addPagamento = this.addPagamento.bind(this);
+    this.closeProdutoModal = this.closeProdutoModal.bind(this);
+    this.openProdutoModal = this.openProdutoModal.bind(this);
   }
 
   async componentDidMount() {
@@ -77,7 +81,7 @@ export default class NFCeForm extends Component {
     produtos.push(novoProduto);
 
     let totalProdutos = this.calcularTotalProdutos().toLocaleString("pt-BR", { minimumFractionDigits: 2 })
-    this.setState({ produtos, totalProdutos });
+    this.setState({ produtos, totalProdutos, showProdutoModal: false });
   }
 
   addPagamento(novoPagamento) {
@@ -85,6 +89,16 @@ export default class NFCeForm extends Component {
     pagamentos.push(novoPagamento);
 
     this.setState({ pagamentos });
+  }
+
+  openProdutoModal(e) {
+    e.preventDefault();
+    this.setState({showProdutoModal: true});
+  }
+
+  closeProdutoModal(e) {
+    e.preventDefault();
+    this.setState({showProdutoModal: false});
   }
 
   calcularTotalProdutos = () => {
@@ -189,7 +203,7 @@ export default class NFCeForm extends Component {
         <form onSubmit={this.handleSubmit} noValidate>
           <section>
 
-            <h5>Destinatário</h5>
+            <h5 className="h5-centered">Destinatário</h5>
             <fieldset className="form-group col-lg-3">
               <label>Nome:</label>
               <select className="form-control ">
@@ -208,7 +222,7 @@ export default class NFCeForm extends Component {
           </section>
           <hr />
           <section>
-            <h5>Produtos e Serviços</h5>
+            <h5 className="h5-centered">Produtos e Serviços</h5>
             <div id="tbProdutos" className={"table-responsive" + (formErrors.produtos.length > 0 ? " table-invalid" : "")}>
               <table className="table">
                 <thead className="thead-light">
@@ -225,11 +239,11 @@ export default class NFCeForm extends Component {
                 </tbody>
               </table>
             </div>
-            <button className="btn btn-primary btn-bellow-table">Adicionar novo produto</button>
+            <button onClick={this.openProdutoModal} className="btn btn-primary btn-bellow-table">Adicionar novo produto</button>
           </section>
           <hr />
           <section>
-            <h5>Pagamentos</h5>
+            <h5 className="h5-centered">Pagamentos</h5>
             <div className={"table-responsive" + (formErrors.pagamentos.length > 0 ? " table-invalid" : "")}>
               <table className="table">
               <thead className="thead-light">
@@ -253,6 +267,7 @@ export default class NFCeForm extends Component {
               <button type="submit" className="btn btn-success  float-right" style={{ width: "150px" }}>Enviar Nota Fiscal</button>
             </div>
           </div>
+          {this.state.showProdutoModal && (<ProdutoModal formValid={formValid} addProduto={this.addProduto} closeProdutoModal={this.closeProdutoModal} produtos={this.state.produtos}  />)}
         </form>
       </section>
     );

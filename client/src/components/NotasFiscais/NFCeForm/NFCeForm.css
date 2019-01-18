@@ -1,6 +1,13 @@
-.NFCeForm h5 {
-  margin-top: -20px;
-  margin-bottom: 25px;
+.NFCeForm .col-lg-3 {
+  padding-left: 0;
+}
+
+.NFCeForm .col-lg-5 {
+  padding-left: 0;
+}
+
+.NFCeForm .col-lg-7 {
+  padding-left: 0;
 }
 
 .NFCeForm hr {

@@ -7,6 +7,15 @@ main {
   margin-top: 20px;
 }
 
+.modal {
+  display: block;
+  background: rgba(0,0,0,0.3);
+}
+
+.modal-content {
+  margin-top: 45%;
+}
+
 .table {
   border-bottom: 1px solid #ddd;
 }
@@ -39,4 +48,8 @@ main {
   background-color: #0D5B9D;
 }
 
+.h5-centered {
+  margin-top: -20px;
+  margin-bottom: 25px;
+}
 
