@@ -82,7 +82,6 @@ export default class NFCeForm extends Component {
 
     let totalProdutos = this.calcularTotalProdutos().toLocaleString("pt-BR", { minimumFractionDigits: 2 })
     this.setState({ produtos, totalProdutos, showProdutoModal: false });
-    document.body.classList.remove('modal-open');
   }
 
   addPagamento(novoPagamento) {
@@ -94,13 +93,11 @@ export default class NFCeForm extends Component {
 
   openProdutoModal(e) {
     e.preventDefault();
-    document.body.classList.add('modal-open');
     this.setState({showProdutoModal: true});
   }
 
   closeProdutoModal(e) {
     e.preventDefault();
-    document.body.classList.remove('modal-open');
     this.setState({showProdutoModal: false});
   }
 
