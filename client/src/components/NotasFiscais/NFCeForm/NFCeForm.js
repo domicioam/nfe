@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './NFCeForm.css';
-import ProdutoModal  from './ProdutoModal';
+import ProdutoModal from './ProdutoModal';
+import PagamentoModal from './PagamentoModal';
 
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,6 +24,7 @@ export default class NFCeForm extends Component {
       totalProdutos: "0,00",
       pagamentos: [],
       showProdutoModal: false,
+      showPagamentoModal: false,
       formErrors: {
         cabeçalho: {
           destinatário: "",
@@ -41,6 +43,8 @@ export default class NFCeForm extends Component {
     this.addPagamento = this.addPagamento.bind(this);
     this.closeProdutoModal = this.closeProdutoModal.bind(this);
     this.openProdutoModal = this.openProdutoModal.bind(this);
+    this.closePagamentoModal = this.closePagamentoModal.bind(this);
+    this.openPagamentoModal = this.openPagamentoModal.bind(this);
   }
 
   async componentDidMount() {
@@ -88,17 +92,27 @@ export default class NFCeForm extends Component {
     let pagamentos = this.state.pagamentos;
     pagamentos.push(novoPagamento);
 
-    this.setState({ pagamentos });
+    this.setState({ pagamentos, showPagamentoModal: false });
   }
 
   openProdutoModal(e) {
     e.preventDefault();
-    this.setState({showProdutoModal: true});
+    this.setState({ showProdutoModal: true });
   }
 
   closeProdutoModal(e) {
     e.preventDefault();
-    this.setState({showProdutoModal: false});
+    this.setState({ showProdutoModal: false });
+  }
+
+  openPagamentoModal(e) {
+    e.preventDefault();
+    this.setState({ showPagamentoModal: true });
+  }
+
+  closePagamentoModal(e) {
+    e.preventDefault();
+    this.setState({ showPagamentoModal: false });
   }
 
   calcularTotalProdutos = () => {
@@ -246,7 +260,7 @@ export default class NFCeForm extends Component {
             <h5 className="h5-centered">Pagamentos</h5>
             <div className={"table-responsive" + (formErrors.pagamentos.length > 0 ? " table-invalid" : "")}>
               <table className="table">
-              <thead className="thead-light">
+                <thead className="thead-light">
                   <tr>
                     <th>Parcelas</th>
                     <th>Valor Parcela</th>
@@ -259,7 +273,7 @@ export default class NFCeForm extends Component {
                 </tbody>
               </table>
             </div>
-            <button className="btn btn-primary btn-bellow-table">Adicionar novo pagamento</button>
+            <button onClick={this.openPagamentoModal} className="btn btn-primary btn-bellow-table">Adicionar novo pagamento</button>
           </section>
           <hr />
           <div id="button-group-submit" className="row">
@@ -267,7 +281,10 @@ export default class NFCeForm extends Component {
               <button type="submit" className="btn btn-success  float-right" style={{ width: "150px" }}>Enviar Nota Fiscal</button>
             </div>
           </div>
-          {this.state.showProdutoModal && (<ProdutoModal formValid={formValid} addProduto={this.addProduto} closeProdutoModal={this.closeProdutoModal} produtos={this.state.produtos}  />)}
+          {this.state.showProdutoModal && (<ProdutoModal formValid={formValid} addProduto={this.addProduto}
+            closeProdutoModal={this.closeProdutoModal} produtos={this.state.produtos} />)}
+          {this.state.showPagamentoModal && (<PagamentoModal formValid={formValid} addPagamento={this.addPagamento}
+            closePagamentoModal={this.closePagamentoModal} pagamentos={this.state.pagamentos} totalProdutos={this.state.totalProdutos} />)}
         </form>
       </section>
     );
