@@ -170,7 +170,7 @@ class ProdutoModal extends Component {
     const { formErrors } = this.state;
 
     return (
-      <div className="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div id="produtoModal" className="modal" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -211,7 +211,7 @@ class ProdutoModal extends Component {
               </fieldset>
             </div>
             <div className="modal-footer">
-              <button onClick={this.props.closeProdutoModal} type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <button onClick={this.handleSubmit} className="btn btn-primary">Gravar Produto</button>
             </div>
           </div>

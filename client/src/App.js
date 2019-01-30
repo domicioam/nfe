@@ -11,28 +11,7 @@ import NotasFiscais from './components/NotasFiscais/NotasFiscais';
 import Destinatários from './components/Destinatários/Destinatários';
 import NFCeForm from './components/NotasFiscais/NFCeForm/NFCeForm';
 import NFeForm from './components/NotasFiscais/NFeForm/NFeForm';
-import Login from './components/Login';
 
-//fake auth para testar navegação de login
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100);
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
-}
-
-const PrivateRoute = ({ component: Component, ...rest}) => (
-  <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to="/login" />
-    )} />
-);
 
 class App extends Component {
   constructor(props) {
@@ -44,37 +23,21 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Switch>
-          <div className="App">
-            <Route exact path="/(login)" component={LoginContainer} />
-            <PrivateRoute component={DefaultContainer} />
-          </div>
-        </Switch>
+        <React.Fragment>
+          <Header />
+          <main className="container">
+            <Switch>
+              <Route exact path="/notas" component={NotasFiscais} />
+              <Route exact path="/notas/nfce" component={NFCeForm} />
+              <Route exact path="/notas/nfe" component={NFeForm} />
+              <Route path="/destinatários" component={Destinatários} />
+            </Switch>
+          </main>
+          {/* <Footer /> */}
+        </React.Fragment>
       </Router>
     );
   }
 }
-
-const LoginContainer = () => (
-  <React.Fragment>
-    <Route exact path="/" render={() => <Redirect to="/login" />} />
-    <Route path="/login" component={Login} authHandler={fakeAuth} />
-  </React.Fragment>
-)
-
-const DefaultContainer = () => (
-  <React.Fragment>
-    <Header />
-    <main className="container">
-      <Switch>
-        <Route exact path="/notas" component={NotasFiscais} />
-        <Route exact path="/notas/nfce" component={NFCeForm} />
-        <Route exact path="/notas/nfe" component={NFeForm} />
-        <Route path="/destinatários" component={Destinatários} />
-      </Switch>
-    </main>
-    {/* <Footer /> */}
-  </React.Fragment>
-)
 
 export default App;

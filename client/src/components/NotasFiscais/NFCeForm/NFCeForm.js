@@ -23,8 +23,6 @@ export default class NFCeForm extends Component {
       produtos: [],
       totalProdutos: "0,00",
       pagamentos: [],
-      showProdutoModal: false,
-      showPagamentoModal: false,
       formErrors: {
         cabeçalho: {
           destinatário: "",
@@ -41,10 +39,6 @@ export default class NFCeForm extends Component {
 
     this.addProduto = this.addProduto.bind(this);
     this.addPagamento = this.addPagamento.bind(this);
-    this.closeProdutoModal = this.closeProdutoModal.bind(this);
-    this.openProdutoModal = this.openProdutoModal.bind(this);
-    this.closePagamentoModal = this.closePagamentoModal.bind(this);
-    this.openPagamentoModal = this.openPagamentoModal.bind(this);
   }
 
   async componentDidMount() {
@@ -93,26 +87,6 @@ export default class NFCeForm extends Component {
     pagamentos.push(novoPagamento);
 
     this.setState({ pagamentos, showPagamentoModal: false });
-  }
-
-  openProdutoModal(e) {
-    e.preventDefault();
-    this.setState({ showProdutoModal: true });
-  }
-
-  closeProdutoModal(e) {
-    e.preventDefault();
-    this.setState({ showProdutoModal: false });
-  }
-
-  openPagamentoModal(e) {
-    e.preventDefault();
-    this.setState({ showPagamentoModal: true });
-  }
-
-  closePagamentoModal(e) {
-    e.preventDefault();
-    this.setState({ showPagamentoModal: false });
   }
 
   calcularTotalProdutos = () => {
@@ -253,7 +227,7 @@ export default class NFCeForm extends Component {
                 </tbody>
               </table>
             </div>
-            <button onClick={this.openProdutoModal} className="btn btn-primary btn-bellow-table">Adicionar novo produto</button>
+            <button type="button" data-toggle="modal" data-target="#produtoModal" className="btn btn-primary btn-bellow-table">Adicionar novo produto</button>
           </section>
           <hr />
           <section>
@@ -281,10 +255,8 @@ export default class NFCeForm extends Component {
               <button type="submit" className="btn btn-success  float-right" style={{ width: "150px" }}>Enviar Nota Fiscal</button>
             </div>
           </div>
-          {this.state.showProdutoModal && (<ProdutoModal formValid={formValid} addProduto={this.addProduto}
-            closeProdutoModal={this.closeProdutoModal} produtos={this.state.produtos} />)}
-          {this.state.showPagamentoModal && (<PagamentoModal formValid={formValid} addPagamento={this.addPagamento}
-            closePagamentoModal={this.closePagamentoModal} pagamentos={this.state.pagamentos} totalProdutos={this.state.totalProdutos} />)}
+          <ProdutoModal formValid={formValid} addProduto={this.addProduto} produtos={this.state.produtos} />
+          <PagamentoModal formValid={formValid} addPagamento={this.addPagamento} pagamentos={this.state.pagamentos} totalProdutos={this.state.totalProdutos} />
         </form>
       </section>
     );
